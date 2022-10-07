@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,19 +8,23 @@
     <link rel="stylesheet" href="./style.css">
     <title>Ejercicio 2</title>
 </head>
+
 <body>
-<div>
+    <div>
 
-<form action="./ejercicio_2_respuesta.php" method="POST">
-    <label>Número</label><br>
-    <input type="number" name="numero"><br>
-    <input type="submit" value="Enviar">
+        <form action="./ejercicio_2_respuesta.php" method="POST">
+            <label>Número</label><br>
+            <input type="number" name="numero"><br>
+            <input type="submit" value="Enviar">
 
-</form>
-</div>
-
-<?php
-/*
+        </form>
+    </div>
+    <br><br>
+    <div>
+        <a href="./index.php">Volver a la página principal</a>
+    </div>
+    <?php
+    /*
 EJERCICIO 2
 
 CREAR UN FORMULARIO QUE RECIBA UN NUMERO
@@ -37,11 +42,7 @@ NUMERO = 3
 
 
 
-?>
+    ?>
 </body>
+
 </html>
-
-
-
-
-

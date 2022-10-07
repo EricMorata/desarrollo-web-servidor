@@ -12,12 +12,6 @@
 <body>
     <h1>
         EJERCICIO 3:
-
-        Crear un formulario que reciba el nombre y la edad de una persona y
-        muestre por pantalla si es menor de edad, es adulta, o está jubilada en función
-        a su edad. Además:
-        - Convertir la edad a un número entero
-        - Convertir el nombre introducido a minúsculas salvo la primera letra, que será mayúscula
     </h1>
 
     <form action="./ejercicio_3_respuesta.php" method="POST">
@@ -27,8 +21,10 @@
         <input type="text" name="edad"><br>
         <input type="submit" value="Enviar">
     </form>
-
-
+    <br><br>
+    <div>
+        <a href="./index.php">Volver a la página principal</a>
+    </div>
 </body>
 
 </html>
