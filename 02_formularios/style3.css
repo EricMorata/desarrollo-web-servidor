@@ -1,0 +1,73 @@
+input[type="text"],select{
+    border: 1px solic #c9c9c9;
+    box-shadow: 0px 0px 2px #ccc inset;
+    background: white;
+    padding: 1px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: gray;
+    transition: all 300ms;
+}
+
+
+
+input[type="text"]:focus,
+ select:focus {
+    border: 1px solid #3d5af1;
+    color: black;
+}
+
+input[type="button"],
+input[type="submit"],
+button {
+    display: block;
+    border-radius: 2px;
+    border: 1px solid #0e153a;
+    width: 60px;
+    padding: 3px;
+    background-color: #3d5af1;
+    cursor: pointer;
+    color: white;
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover,
+button:hover {
+    box-shadow: 0px 0px 2px gray;
+}
+
+input[type="button"]:active,
+input[type="submit"]:active,
+button:active {
+    box-shadow: 0px 0px 3px gray inset;
+    text-shadow: 0px 0px 1px #ccc;
+}
+
+body {
+    width: 1250px;
+    min-height: 1100px;
+    margin: 0px auto;
+    background: rgb(2, 0, 36);
+
+}
+
+h1 {
+    text-align:left;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-top: 10px;
+    text-shadow: 0px 2px 1px #333333;
+    transition: all 300ms;
+}
+
+h1:hover {
+    text-shadow: 0px 2px 1px #333333, 0px 0px 10px #a70aad;
+}
+
+#content {
+
+    
+
+}

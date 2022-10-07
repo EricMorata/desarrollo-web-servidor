@@ -8,6 +8,7 @@
     <title>Ejercicio 2</title>
 </head>
 <body>
+<div>
 
 <form action="./ejercicio_2_respuesta.php" method="POST">
     <label>Número</label><br>
@@ -15,6 +16,8 @@
     <input type="submit" value="Enviar">
 
 </form>
+</div>
+
 <?php
 /*
 EJERCICIO 2
