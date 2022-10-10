@@ -13,10 +13,10 @@
 
 <body>
     <h1>
-        Asegurarse de que funciona con cualquier valor válido.
-        
-        No se admiten exponentes negativos. vale
-        </h1>
+        Asegurarse de que funciona con cualquier valor válido.
+        
+        No se admiten exponentes negativos. vale
+        </h1>
     <form action="./ejercicio_5_respuesta.php" method="POST">
         <label id="numero">Número</label>
         <input type="number" name="numero">

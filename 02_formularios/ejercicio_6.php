@@ -16,6 +16,15 @@
         Factorial de 5: 1*2*3*4*5 = 120
     </p>
 
+    <form action="./ejercicio_6_respuesta.php" method="POST">
+    <label id="numero">Número</label>
+    <input type="number" name="numero">
+    <input type="submit" value="Enviar">
+
+
+
+    </form>
+
 </body>
 
 </html>

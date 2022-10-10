@@ -42,10 +42,17 @@
             <p>Formulario que reciba dos números. Devolver el resultado de elevar el primero al segundo. </p>
         </li>
 
+        <li>
+            <a href="./ejercicio_6.php">Ejercicio 6</a>
+            <p>Formulario que reciba un número y devuelva su factorial.
+                Factorial de 3: 1*2*3 = 6
+                Factorial de 5: 1*2*3*4*5 = 120 </p>
+        </li>
+
         <br><br>
-    <div>
-        <a href="./index.php">Volver a la página principal</a>
-    </div>
+        <div>
+            <a href="./index.php">Volver a la página principal</a>
+        </div>
 
     </ul>
 
