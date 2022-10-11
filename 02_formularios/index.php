@@ -49,6 +49,11 @@
                 Factorial de 5: 1*2*3*4*5 = 120 </p>
         </li>
 
+        <li>
+            <a href="./ejercicio_7.php">Ejercicio 7</a>
+            <p>Formulario que devuelve el metodo en la misma pagina</p>
+        </li>
+
         <br><br>
         <div>
             <a href="./index.php">Volver a la página principal</a>

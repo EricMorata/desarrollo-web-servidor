@@ -15,11 +15,17 @@
     $numero2 = $_POST["numero2"];
     $resultado = 1;
 
-    for ($i = 1; $i <= $numero2; $i++) {
-       
-        $resultado  = $resultado*$numero;
+    if ($numero2 < 0) {
+        echo "<p>El exponente debe ser positivo</p>";
+    } elseif ($numero2 == 1) {
+        echo "<p>$resultado</p>";
+    } else {
+        for ($i = 1; $i <= $numero2; $i++) {
+
+            $resultado  = $resultado * $numero;
+        }
+        echo $resultado;
     }
-    echo $resultado;
 
     ?>
 </body>

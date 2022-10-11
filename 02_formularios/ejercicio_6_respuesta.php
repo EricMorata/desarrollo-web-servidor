@@ -15,11 +15,18 @@
 
     $numero = $_POST["numero"];
     $factorial = 1;
-    for ($i = 1; $i <= $numero; $i++) {
-        $factorial = $factorial * $i;
-        echo"<br> La Factorizacion del numero",$numero," es ",$factorial;
+
+    if($numero >=1){
+        for ($i = 1; $i <= $numero; $i++) {
+            $factorial = $factorial * $i;
+          
+        }
+        echo"<br> La Factorizacion del numero ",$numero," es ",$factorial;
+    } else{
+        echo "<p>El número debe de ser igual o más que 1</p>";
     }
-    return $factorial;
+    
+    
 
 
     ?>
