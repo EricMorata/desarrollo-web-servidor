@@ -143,10 +143,10 @@
         <p>Formulario que reciba dos números. Devolver el resultado de elevar el primero al segundo. Asegurarse de que funciona con cualquier valor válido. No se admiten exponentes negativos.</p>
 
         <form action="#ej5" method="POST">
-            <label id="numero">Número</label><br>
-            <input type="number" name="numeroej5"><br><br>
-            <label id="numero2">Número 2</label><br>
-            <input type="number" name="numero2"><br><br>
+            <label>Base</label><br>
+            <input type="text" name="base"><br><br>
+            <label>Exponente</label><br>
+            <input type="text" name="exponente"><br><br>
             <input type="hidden" name="f" value="ej5"><br>
             <input type="submit" value="Enviar">
         </form>
@@ -155,26 +155,20 @@
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_POST["f"] == "ej5") {
-                $numero = $_POST["numeroej5"];
-                $numero2 = $_POST["numero2"];
-                $resultado = 1;
-
-
-
-
-                if ($numero2 < 0) {
-                    echo "<p>El exponente debe ser positivo</p>";
-                } elseif ($numero2 == 1) {
-                    echo "<p>$resultado</p>";
-                } else {
-                    for ($i = 1; $i <= $numero2; $i++) {
-
-                        $resultado  = $resultado * $numero;
-                    }
-                    echo $resultado;
+                require 'Funciones/potencia.php';
+                $base= $_POST["base"];
+                $exponente = $_POST["exponente"];
+                $resultado = potencia($base, $exponente);
+                if($resultado == -1){
+                    echo "<p>El número no puede ser negativo</p>";
+                }else {
+                    echo "<p>El resultado es $resultado</p>";
                 }
+
             }
         }
+
+
 
         ?>
 
@@ -187,7 +181,7 @@
         <p>Formulario que reciba un número. Devolver el factorial de dicho número.</p>
         <form action="#ej6" method="POST">
             <label id="numero">Número</label>
-            <input type="number" name="numeroej6"><br>
+            <input type="number" name="numero"><br>
             <input type="hidden" name="f" value="ej6"><br>
             <input type="submit" value="Enviar">
         </form>
@@ -195,20 +189,53 @@
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_POST["f"] == "ej6") {
-                $numeroej6 = $_POST["numeroej6"];
-                $factorial = 1;
+                require './Funciones/factorial.php';
+                $numero = $_POST["numero"];
+                $factorial = factorial($numero);
 
-                if ($numeroej6 >= 1) {
-                    for ($i = 1; $i <= $numeroej6; $i++) {
-                        $factorial = $factorial * $i;
-                    }
-                    echo "<br> La Factorizacion del numero ", $numeroej6, " es ", $factorial;
-                } else {
-                    echo "<p>El número debe de ser igual o más que 1</p>";
-                }
+                
+                    echo "<br> La Factorizacion del numero ", $numero, " es ", $factorial;
+                
             }
         }
 
+        ?>
+
+
+    </div>
+    <div>
+        <h2 id="ej8">
+            <a href="ejercicio_8.php">Ejercicio 8</a>
+        </h2>
+        <p>Crear un formulario que reciba un número. Mostrar la tabla de multiplicar de ese número.
+Hacerlo mediante una tabla HTML.</p>
+        <form action="#ej8" method="POST">
+            <label id="numero">Número</label>
+            <input type="number" name="numero"><br>
+            <input type="hidden" name="f" value="ej8"><br>
+            <input type="submit" value="Enviar">
+        </form>
+        <br><br>
+        <?php
+         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if ($_POST["f"] == "ej8") {
+			$numero = $_POST['numero'];
+			echo "<table border='7'><br>";
+			echo "<h3>Tabla del $numero </h3>";
+			
+			for($i=1; $i <= 10; $i++)
+			{
+				$valor = $i*$numero;
+				echo "<tr>";
+				echo "<td>&nbsp; $i X $numero &nbsp; </td>";
+				echo "<td>&nbsp; $valor &nbsp;</td>";
+				echo "</tr>";
+			}
+			
+			echo "</table>";
+			
+		}
+    }
         ?>
 
 

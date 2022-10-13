@@ -19,16 +19,16 @@
         No se admiten exponentes negativos. vale
     </h1>
     <form action="./ejercicio_5_respuesta.php" method="POST">
-        <label id="numero">Número</label>
-        <input type="number" name="numero">
-        <label id="numero2">Número 2</label>
-        <input type="number" name="numero2">
+        <label>Base</label><br>
+        <input type="text" name="base"><br><br>
+        <label>Exponente</label><br>
+        <input type="text" name="exponente"><br><br>
         <input type="submit" value="Enviar">
     </form>
     <br><br>
     <?php
-   require 'footer.php';
-   ?>
+    require 'footer.php';
+    ?>
 </body>
 
 </html>
