@@ -17,18 +17,17 @@
 
         $temp_titulo = depurar($_POST["titulo"]);
         $temp_precio = depurar($_POST["precio"]);
+        $temp_consola = depurar ($_POST["consola"]);
 
         if (empty($temp_titulo)) {
             $error_titulo = "El Títutlo es obligatorio";
-        } else{
-            if (strlen($temp_titulo)>40){
+        } else {
+            if (strlen($temp_titulo) > 40) {
                 $error_titulo = "El titulo no puede tener más de 40 carácteres";
             } else {
                 $titulo = $temp_titulo;
             }
         }
-
-        
 
         if (empty($temp_precio)) {
             $error_precio = "El precio es obligatorio";
@@ -48,15 +47,15 @@
                 $precio = $temp_precio;
             }
         }
-
     }
 
-        if(isset($titulo) && isset($precio)){
-            echo "<p>$titulo</p>";
-            echo "<p>$precio</p>";
-        }
 
-      
+    if (isset($titulo) && isset($precio)) {
+        echo "<p>$titulo</p>";
+        echo "<p>$precio €</p>";
+    }
+
+
     //Función que te ayuda a depurar el formulario
     function depurar($dato)
     {
@@ -65,17 +64,17 @@
         $dato = htmlspecialchars($dato);
         return $dato;
     }
-  /*  echo depurar($_POST["titulo"]);
+    /*  echo depurar($_POST["titulo"]);
         echo "<br>";
         echo depurar($_POST["precio"]); */
 
-        /* echo htmlspecialchars($_POST["titulo"]);
+    /* echo htmlspecialchars($_POST["titulo"]);
     echo "<br>";
     echo htmlspecialchars($_POST["precio"]); */
 
-        // var_dump(trim($_POST["titulo"])); //te cuenta las letras
+    // var_dump(trim($_POST["titulo"])); //te cuenta las letras
 
-        //var_dump(stripslashes($_POST["titulo"])); //te quita las barra laterales de carácteres especiales
+    //var_dump(stripslashes($_POST["titulo"])); //te quita las barra laterales de carácteres especiales
 
 
     ?>
@@ -103,8 +102,25 @@
                     ?>
             </span>
         </p>
+        <p>
+            Consola: <input type="select" name="consola">
+
+            <span class = "error">
+            *<?php
+
+            if(isset($error_consola))
+
+            ?>
+
+            </span>
+        </p>
         <p><input type="submit" value="Crear"></p>
     </form>
+
+    <!-- - Consola (select con al menos 4 opciones) (PS4, PS5, SWITCH...)
+            El select de consolas tendrá una opción por defecto vacía
+          -Descripción (area de texto con 255 caracteres máximo)
+          Añadir mensajes de error -->
 
 </body>
 
