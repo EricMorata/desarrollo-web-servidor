@@ -20,13 +20,52 @@
 
         if (empty($temp_titulo)) {
             $error_titulo = "El Títutlo es obligatorio";
+        } else{
+            if (strlen($temp_titulo)>40){
+                $error_titulo = "El titulo no puede tener más de 40 carácteres";
+            } else {
+                $titulo = $temp_titulo;
+            }
         }
+
+        
 
         if (empty($temp_precio)) {
             $error_precio = "El precio es obligatorio";
+        } else {
+            $temp_precio = filter_var($temp_precio, FILTER_VALIDATE_FLOAT);
         }
 
-        /*  echo depurar($_POST["titulo"]);
+        if (!$temp_precio) {
+            $error_precio = "El precio debe ser un número";
+        } else {
+            $temp_precio = round($temp_precio, 2);
+            if ($temp_precio < 0) {
+                $error_precio = "El precio no puede ser negativo";
+            } else if ($temp_precio >= 1000) {
+                $error_precio = "El precio no puede ser superior a 1000";
+            } else {
+                $precio = $temp_precio;
+            }
+        }
+
+    }
+
+        if(isset($titulo) && isset($precio)){
+            echo "<p>$titulo</p>";
+            echo "<p>$precio</p>";
+        }
+
+      
+    //Función que te ayuda a depurar el formulario
+    function depurar($dato)
+    {
+        $dato = trim($dato);
+        $dato = stripslashes($dato);
+        $dato = htmlspecialchars($dato);
+        return $dato;
+    }
+  /*  echo depurar($_POST["titulo"]);
         echo "<br>";
         echo depurar($_POST["precio"]); */
 
@@ -38,15 +77,6 @@
 
         //var_dump(stripslashes($_POST["titulo"])); //te quita las barra laterales de carácteres especiales
 
-    }
-    //Función que te ayuda a depurar el formulario
-    function depurar($dato)
-    {
-        $dato = trim($dato);
-        $dato = stripslashes($dato);
-        $dato = htmlspecialchars($dato);
-        return $dato;
-    }
 
     ?>
 
