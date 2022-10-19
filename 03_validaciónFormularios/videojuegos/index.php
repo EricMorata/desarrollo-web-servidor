@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
     <title>Videojuegos</title>
 </head>
 
@@ -17,7 +17,9 @@
 
         $temp_titulo = depurar($_POST["titulo"]);
         $temp_precio = depurar($_POST["precio"]);
-        $temp_consola = depurar ($_POST["consola"]);
+        $temp_consola = depurar($_POST["consola"]);
+        $temp_descripcion = depurar($_POST["descripcion"]);
+
 
         if (empty($temp_titulo)) {
             $error_titulo = "El Títutlo es obligatorio";
@@ -45,6 +47,16 @@
                 $error_precio = "El precio no puede ser superior a 1000";
             } else {
                 $precio = $temp_precio;
+            }
+        }
+
+        if (empty($temp_descripcion)) {
+            $error_descipcion = "La descripción es obligatoria";
+        } else {
+            if (strlen($temp_descripcion) >= 255) {
+                $error_descipcion = "La descripción no puede tener más de 255 carácteres";
+            } else {
+                $descripcion = $temp_descripcion;
             }
         }
     }
@@ -103,24 +115,41 @@
             </span>
         </p>
         <p>
-            Consola: <input type="select" name="consola">
+            Consola:
+            <select name="consola" required>
+                <option value=""></option>
+                <option>PS5</option>
+                <option>PS4</option>
+                <option>Switch</option>
+                <option>PC</option>
+            </select>
 
-            <span class = "error">
-            *<?php
+            <!-- <input type="select" name="consola"> -->
 
-            if(isset($error_consola))
+            <span class="error">
+                *<?php
 
-            ?>
+                    if (isset($error_consola))
+
+                    ?>
 
             </span>
         </p>
+        <p>
+            Descripción:
+            <textarea name="descripcion" placeholder="Max. 255 carácteres"></textarea>
+            <span class="error">
+
+                * <?php
+
+                if (isset($error_descipcion)) echo $error_descipcion
+
+                    ?>
+            </span>
+
+        </p>
         <p><input type="submit" value="Crear"></p>
     </form>
-
-    <!-- - Consola (select con al menos 4 opciones) (PS4, PS5, SWITCH...)
-            El select de consolas tendrá una opción por defecto vacía
-          -Descripción (area de texto con 255 caracteres máximo)
-          Añadir mensajes de error -->
 
 </body>
 
