@@ -17,6 +17,9 @@
         $temp_nombre = depurar($_POST["nombre"]);
         $temp_apellidos = depurar($_POST["apellidos"]);
         $temp_dni = depurar($_POST["dni"]);
+        $temp_email = depurar($_POST["email"]);
+        $temp_fecha = depurar($_POST["fecha"]);
+
 
         if (empty($temp_nombre)) {
             $error_nombre = "El nombre es obligatorio";
@@ -56,14 +59,36 @@
             $error_dni = "El dni es obligatorio";
         } else {
             $pattern = "/^[0-9]{8}[a-zA-Z]$/";
-            if(!preg_match($pattern,$temp_dni)){
+            if (!preg_match($pattern, $temp_dni)) {
                 $error_dni = "El dni debe de tener 8 dígitos y un carácter";
             } else {
                 $dni = $temp_dni;
             }
+        }
+
+        if (empty($temp_email)) {
+            $error_email = "El email es obligatorio";
+        } else {
+            $temp_email = filter_var($temp_email, FILTER_VALIDATE_EMAIL);
+            if (!$temp_email) {
+                $error_email = "El email no es valido";
+            } else {
+                $email = $temp_email;
+            }
+        }
+
+        if(empty($temp_fecha)){
+            $error_fecha = "La fecha es obligatoria";
+        }else {
+            $pattern = "/^[0-3][0-9]\/[0-1][0-9]\/(19|20)[0-9]{2}$/";
+            if(!preg_match($pattern, $temp_fecha)){
+                $error_fecha = "El formato de la fecha no es correcta";
+            }else {
+                $fecha = $temp_fecha;
+            }
+        }
     }
 
-}
 
 
 
@@ -102,14 +127,39 @@
                 ?>
 
         </span>
+
         <br><br>
+
         <label for="dni">DNI:</label><br>
         <input type="text" name="dni" placeholder="max. 8 números y 1 letra">
         <span class="error">
             *<?php
                 if (isset($error_dni)) echo $error_dni
                 ?>
-        </span><br><br>
+        </span>
+
+        <br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="text" name="email" placeholder="example@email.com">
+        <span class="error">
+            *<?php
+                if (isset($error_email)) echo $error_email
+                ?>
+        </span>
+
+        <br><br>
+
+        <label for="fecha">Fecha:</label><br>
+        <input type="text" name="fecha" placeholder="dd/mm/yyyy">
+        <span class="error">
+            *<?php
+                if (isset($error_fecha)) echo $error_fecha
+                ?>
+        </span>
+
+        <br><br>
+
         <input type="submit" value="Enviar">
 
     </form>
