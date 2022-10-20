@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <link rel="stylesheet" type="text/css" href="./stylevideojuegos.css" />
     <title>Videojuegos</title>
 </head>
 
@@ -17,8 +17,19 @@
 
         $temp_titulo = depurar($_POST["titulo"]);
         $temp_precio = depurar($_POST["precio"]);
-        $temp_consola = depurar($_POST["consola"]);
         $temp_descripcion = depurar($_POST["descripcion"]);
+        if(isset($_POST["consola"])){
+            $temp_consola = depurar($_POST["consola"]);
+        } else{
+            $temp_consola = "";
+        }
+
+        if(empty($temp_consola)){
+            $error_consola = "La consola es obligatoria";
+        }else{
+            $consola = $temp_consola;
+        }
+        
 
 
         if (empty($temp_titulo)) {
@@ -62,9 +73,10 @@
     }
 
 
-    if (isset($titulo) && isset($precio)) {
+    if (isset($titulo) && isset($precio) && isset($consola)){
         echo "<p>$titulo</p>";
         echo "<p>$precio €</p>";
+        echo "<p>$consola</p>";
     }
 
 
@@ -116,8 +128,8 @@
         </p>
         <p>
             Consola:
-            <select name="consola" required>
-                <option value=""></option>
+            <select name="consola">
+                <option value="" selected disabled hidden></option>
                 <option>PS5</option>
                 <option>PS4</option>
                 <option>Switch</option>
@@ -129,7 +141,7 @@
             <span class="error">
                 *<?php
 
-                    if (isset($error_consola))
+                    if (isset($error_consola)) echo $error_consola
 
                     ?>
 
