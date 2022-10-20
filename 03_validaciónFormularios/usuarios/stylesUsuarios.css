@@ -1,0 +1,29 @@
+span.error{
+    color: rgb(240, 50, 50);
+}
+
+
+body{
+    background-color: rgb(44, 44, 58);
+}
+
+h1{
+    text-align: center;
+    color: rgb(214, 214, 55);
+    
+}
+
+label{
+    color: aliceblue;
+}
+
+input{
+    background-color: rgb(44, 197, 174);
+}
+
+form input[type="submit"]{
+    background-color: yellowgreen;
+    color: blue;
+    border-radius: 40%;
+    box-shadow: -1;
+}
