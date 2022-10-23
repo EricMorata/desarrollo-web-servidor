@@ -22,24 +22,45 @@
         <p>
             Ej: Si a=3 y b=4, se devolverán los tres primeros números primos empezando por 4. Es decir, 5, 7 y 11.
         </p>
-<?php
-function esPrimo($numero1, $numero2){
-    $cont = 0;
-       for ($i=2; $i <= $num; $i++) {
-          if ($num % $i==0) $cont = $cont + 1;
-       }
-    if ($cont==2) return true;
-       return false;
+
+        <form action="" method="POST">
+
+            <label for="numero1">Numero 1:</label><br>
+        <input type="text" name="num1"><br><br>
+
+        <label for="numero2">Número 2:</label><br>
+        <input type="text" name="num2"><br><br>
+        <input type="hidden" name="f" value="ej1">
+        <input type="submit" value="Enviar">
+
+
+        </form>
+
+        <?php
+ 
+    if(isset($_POST['num1']) && isset($_POST['num2'])){
+        $a = $_POST['num1'];
+        $b = $_POST['num2'];
+        $cont = 0;
+        $num = $b;
+        while($cont < $a){
+            $div = 0;
+            for($i = 1; $i <= $num; $i++){
+                if($num % $i == 0){
+                    $div++;
+                }
+            }
+            if($div == 2){
+                echo $num . "<br>";
+                $cont++;
+            }
+            $num++;
+        }
     }
 
-    $nunero1=0;
-    $numero2=0;
-    do{
-        esPrimo($nunero1, $numero2);
-        
-    } 
- 
-?>
+    ?>
+
+
 
 
     </div>
