@@ -5,15 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
     <title>Index</title>
 </head>
 
 <body>
     <h1>Ejercicios practica_01</h1>
 
+    <video src="./Resumen - 20072.mp4" controls autoplay muted loop></video>
+
     <div>
         <h2>Ejercicio 1</h2>
-        <p>
+       <!--  <p>
             Un número primo es aquel que sólo es divisible entre sí mismo y 1. Crea un formulario que reciba dos números “a” y “b”.
         </p>
         <p>
@@ -21,44 +24,44 @@
         </p>
         <p>
             Ej: Si a=3 y b=4, se devolverán los tres primeros números primos empezando por 4. Es decir, 5, 7 y 11.
-        </p>
+        </p> -->
 
-        <form action="" method="POST">
+        <form class="form1" action="" method="POST">
 
-            <label for="numero1">Numero 1:</label><br>
-        <input type="text" name="num1"><br><br>
+    
+            <input type="text" name="num1" placeholder="Introduzca 1 número"><br><br>
 
-        <label for="numero2">Número 2:</label><br>
-        <input type="text" name="num2"><br><br>
-        <input type="hidden" name="f" value="ej1">
-        <input type="submit" value="Enviar">
+            
+            <input type="text" name="num2"  placeholder="Introduzca 1 número"><br><br>
+            <input type="hidden" name="f" value="ej1">
+            <input type="submit" value="Enviar">
 
 
         </form>
 
         <?php
- 
-    if(isset($_POST['num1']) && isset($_POST['num2'])){
-        $a = $_POST['num1'];
-        $b = $_POST['num2'];
-        $cont = 0;
-        $num = $b;
-        while($cont < $a){
-            $div = 0;
-            for($i = 1; $i <= $num; $i++){
-                if($num % $i == 0){
-                    $div++;
-                }
-            }
-            if($div == 2){
-                echo $num . "<br>";
-                $cont++;
-            }
-            $num++;
-        }
-    }
 
-    ?>
+        if (isset($_POST['num1']) && isset($_POST['num2'])) {
+            $a = $_POST['num1'];
+            $b = $_POST['num2'];
+            $cont = 0;
+            $num = $b;
+            while ($cont < $a) {
+                $div = 0;
+                for ($i = 1; $i <= $num; $i++) {
+                    if ($num % $i == 0) {
+                        $div++;
+                    }
+                }
+                if ($div == 2) {
+                    echo $num . "<br>";
+                    $cont++;
+                }
+                $num++;
+            }
+        }
+
+        ?>
 
 
 
@@ -67,19 +70,21 @@
 
     <div>
         <h2 id="ej2">Ejercicio 2</h2>
-        <p>
+        <!-- <p>
             Crea un formulario que compruebe si un DNI es válido. Un DNI es válido si:
         </p>
         <p>Está formado por 8 dígitos seguidos de una letra (mayúscula o minúscula)</p>
         <p>La letra es válida (debes de investigar cómo averiguar si la letra es válida)</p>
-        <p>No usar expresiones regulares</p>
+        <p>No usar expresiones regulares</p> -->
 
-        <form action="#ej2" method="post">
-            <label>Dni:</label><br>
-            <input type="text" name="dni"><br><br>
+        <div class="form">
+        <form class="form2" action="#ej2" method="post">
+           
+            <input type="text" name="dni" placeholder="Introduzca su DNI"><br><br>
             <input type="hidden" name="f" value="ej2">
-            <input type="submit" value="enviar">
+            <input type="submit" value="Enviar">
         </form>
+        </div>
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_POST["f"] == "ej2") {
@@ -101,30 +106,24 @@
 
     <div>
         <h2>Ejercicio 3</h2>
-        <p>Genera de manera dinámica las tablas de multiplicar del 1 al 10.
-        <p>El resultado debe ser parecido al siguiente y estar estructurado mediante tablas HTML.</p>
-        </p>
+       <!--  <p>Genera de manera dinámica las tablas de multiplicar del 1 al 10. </p>
+        <p>El resultado debe ser parecido al siguiente y estar estructurado mediante tablas HTML.</p> -->
+       
+    </div>
 
+    <div class="tablas">
         <?php
-        $multiplicando;
-        $multiplicador;
+        $multiplicarHasta = 11;
 
-        echo "<table text-align:center; border=5>";
-        echo "<tr>";
-        for ($tabla = 1; $tabla <= 10; $tabla++) {
-            echo "<td>Tabla del $tabla </td>";
-        }
-        echo "</tr>";
-        echo "<tr>";
-        for ($multiplicador = 1; $multiplicador <= 10; $multiplicador++) {
-            for ($multiplicando = 01; $multiplicando <= 10; $multiplicando++) {
-                echo "<td>$multiplicando X $multiplicador =";
-                echo ($multiplicando * $multiplicador);
-                echo "</td>";
+        for ($i = 1; $i <= 10; $i++) {
+            echo "<table id='tabla'><tr>";
+            echo "<th>Tabla del  " . $i . "</th></tr>";
+            for ($j = 1; $j < $multiplicarHasta; $j++) {
+                echo "<tr><td>" . $i . " x " . $j . " = " . $i * $j . "</td></tr>";
             }
-            echo "</tr>";
+            echo "</table>";
+            echo "<br>";
         }
-        echo "</table>";
         ?>
     </div>
 
