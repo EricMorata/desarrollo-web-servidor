@@ -14,7 +14,7 @@
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $temp_dni = depurar($_POST["dni"]);
-        $temp_nombre = depurar($_POST["Nombre"]);
+        $temp_nombre = depurar($_POST["nombre"]);
         $temp_primerApellido = depurar($_POST["primerApellido"]);
         $temp_segundoApellido = depurar($_POST["segundoApellido"]);
         $temp_edad = depurar($_POST["edad"]);
@@ -36,13 +36,13 @@
         if (empty($temp_nombre)) {
             $error_nombre = "El nombre es obligatorio";
         } else {
-            ucwords(strtolower($temp_nombre));
+            
             $pattern = "/^[a-zA-Z áéíóúÁÉÍÓÚñÑ]+$/";
 
             if (!preg_match($pattern, $temp_nombre)) {
                 $error_nombre = "El nombre solo puede contener letras";
             } else {
-                $nombre = $temp_nombre;
+                $nombre = ucwords(strtolower($temp_nombre));;
                 echo "<p>$nombre</p>";
             }
         }
@@ -72,6 +72,21 @@
             } else {
                 $segundoApellidos = $temp_segundoApellido;
                 echo "<p>$segundoApellidos</p>";
+            }
+        }
+
+
+        if(empty($temp_edad)){
+            $error_edad = "El campo edad es obligatorio";
+        } else{
+            if($temp_edad >=18){
+                (int)$edad= $temp_edad;
+             echo "<p(int)$edad</p>";
+            } elseif ($temp_edad <18 && $temp_edad <=0 || $temp_edad > 120){
+                $error_edad = "Esa edad no es correcta";
+           
+            } else {
+                $error_edad = "Eres menor de edad";
             }
         }
     }
@@ -113,52 +128,58 @@
     <form action="" method="POST">
 
         <label for="dni">DNI:</label><br>
-        <input type="text" name="dni" placeholder="8 carácteres y una letra"><br><br>
+        <input type="text" name="dni" placeholder="8 carácteres y una letra">
         <span class="error">
             *<?php
                 if (isset($error_dni)) echo $error_dni
                 ?>
-        </span><br>
+        </span>
+        <br><br>
 
         <label for="nombre">Nombre:</label><br>
-        <input type="text" name="nombre" placeholder="Nombre completo"><br><br>
+        <input type="text" name="nombre" placeholder="Nombre completo">
         <span class="error">
             *<?php
                 if (isset($error_nombre)) echo $error_nombre
                 ?>
         </span>
+        <br><br>
 
         <label for="primerApellido">Primer apellido:</label><br>
-        <input type="text" name="primerApellido" placeholder="Primer apellido"><br><br>
+        <input type="text" name="primerApellido" placeholder="Primer apellido">
         <span class="error">
             *<?php
                 if (isset($error_primerApellido)) echo $error_primerApellido
                 ?>
         </span>
+        <br><br>
 
         <label for="segundoApellido">Segundo apellido:</label><br>
-        <input type="text" name="segundoApellido" placeholder="Segundo apellido"><br><br>
+        <input type="text" name="segundoApellido" placeholder="Segundo apellido">
         <span class="error">
             *<?php
                 if (isset($error_segundoApellido)) echo $error_segundoApellido
                 ?>
         </span>
+        <br><br>
 
         <label for="edad">Edad:</label><br>
-        <input type="text" name="edad" placeholder="Indicame tu edad en Números"><br><br>
+        <input type="text" name="edad" placeholder="Indicame tu edad en Números">
         <span class="error">
             *<?php
                 if (isset($error_edad)) echo $error_edad
                 ?>
         </span>
+        <br><br>
 
         <label for="email">Email:</label><br>
-        <input type="text" name="email" placeholder="example@email.com"><br><br>
+        <input type="text" name="email" placeholder="example@email.com">
         <span class="error">
             *<?php
                 if (isset($error_email)) echo $error_email
                 ?>
         </span>
+        <br><br>
 
         <input type="submit" value="Enviar">
 
