@@ -12,6 +12,9 @@
 <body>
     <h1>Práctica 2</h1>
     <?php
+
+    use function PHPSTORM_META\elementType;
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $temp_dni = depurar($_POST["dni"]);
         $temp_nombre = depurar($_POST["nombre"]);
@@ -36,7 +39,7 @@
         if (empty($temp_nombre)) {
             $error_nombre = "El nombre es obligatorio";
         } else {
-            
+
             $pattern = "/^[a-zA-Z áéíóúÁÉÍÓÚñÑ]+$/";
 
             if (!preg_match($pattern, $temp_nombre)) {
@@ -76,17 +79,33 @@
         }
 
 
-        if(empty($temp_edad)){
+        if (empty($temp_edad)) {
             $error_edad = "El campo edad es obligatorio";
-        } else{
-            if($temp_edad >=18){
-                (int)$edad= $temp_edad;
-             echo "<p(int)$edad</p>";
-            } elseif ($temp_edad <18 && $temp_edad <=0 || $temp_edad > 120){
+        } else {
+            if ($temp_edad >= 18) {
+                (int)$edad = $temp_edad;
+                echo "<p(int)$edad</p>";
+            } elseif ($temp_edad < 18 && $temp_edad <= 0 || $temp_edad > 120) {
                 $error_edad = "Esa edad no es correcta";
-           
             } else {
                 $error_edad = "Eres menor de edad";
+            }
+        }
+
+        if (empty($temp_email)) {
+            $error_email = "El campo email es obligatorio";
+        } else {
+            if (!filter_var($temp_email, FILTER_VALIDATE_EMAIL)) {
+                $error_email = "Formato de email invalido";
+            } elseif (str_contains($temp_email, 'joputa')) {
+                $error_email = "No puedes usar palabras malsonantes";
+            } elseif (str_contains($temp_email, 'cabron')) {
+                $error_email = "No puedes usar palabras malsonantes";
+            } elseif (str_contains($temp_email, 'follacabras')) {
+                $error_email = "No puedes usar palabras malsonantes";
+            } else{
+                $email = $temp_email;
+                echo "<p>$email</p>";
             }
         }
     }
