@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,77 +10,111 @@
 </head>
 
 <body>
-    <h2>Nuevo juego</h2>
+    <h2>Nuevo videojuego</h2>
     <?php
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
         $temp_titulo = depurar($_POST["titulo"]);
         $temp_precio = depurar($_POST["precio"]);
-        $temp_descripcion = depurar($_POST["descripcion"]);
-        if(isset($_POST["consola"])){
+        if (isset($_POST["consola"])) {
             $temp_consola = depurar($_POST["consola"]);
-        } else{
+        } else {
             $temp_consola = "";
         }
+        $temp_descripcion = $_POST["descripcion"];
 
-        if(empty($temp_consola)){
-            $error_consola = "La consola es obligatoria";
-        }else{
-            $consola = $temp_consola;
-        }
+        $file_name = $_FILES["imagen"]["name"];
+        $file_temp_name = $_FILES["imagen"]["tmp_name"];
+        $file_size = $_FILES["imagen"]["size"];
+        $file_type = $_FILES["imagen"]["type"];
+
+        /*  echo "<p>$file_name</p>";
+            echo "<p>$file_temp_name</p>";
+            echo "<p>$file_size</p>";
+            echo "<p>$file_type</p>"; 
+        */
+
+
+        /*
+                VALIDAR EL FICHERO INTRODUCIDO
+                - ES OBLIGATORIO INTRODUCIR UN FICHERO
+                - TIENE QUE SER UNA IMAGEN DE EXTENSIÓN 
+                JPG, JPEG, PNG
+                - LA IMAGEN NO PUEDE TENER MÁS DE 1 MG
+        */
+
         
 
 
+        $extension = pathinfo($file_name, PATHINFO_EXTENSION);
+        $new_file_name = "videojuego_" . $temp_titulo . "." . $extension;
+        $path = "../images/" . $new_file_name;
+
+
+
+        echo "<p>La extensión es $extension</p>";
+
+        if (move_uploaded_file($file_temp_name, $path)) {
+            echo "<p>Fichero movido con éxito</p>";
+        } else {
+            echo "<p>No se ha podido mover el fichero</p>";
+        }
+
+        //  Validación de la descripción
+        if (empty($temp_descripcion)) {
+            $err_descripcion = "La descripción es obligatoria";
+        } else {
+            if (strlen($temp_descripcion) > 255) {
+                $err_descripcion = "La descripción no puede tener más de 255 caracteres";
+            } else {
+                $descripcion = $temp_descripcion;
+            }
+        }
+
+        if (empty($temp_consola)) {
+            $err_consola = "La consola es obligatoria";
+        } else {
+            $consola = $temp_consola;
+        }
+
         if (empty($temp_titulo)) {
-            $error_titulo = "El Títutlo es obligatorio";
+            $err_titulo = "El título es obligatorio";
         } else {
             if (strlen($temp_titulo) > 40) {
-                $error_titulo = "El titulo no puede tener más de 40 carácteres";
+                $err_titulo = "El título no puede tener más de 40 caracteres";
             } else {
+                //  ¡ÉXITO!
                 $titulo = $temp_titulo;
             }
         }
 
         if (empty($temp_precio)) {
-            $error_precio = "El precio es obligatorio";
+            $err_precio = "El precio es obligatorio";
         } else {
             $temp_precio = filter_var($temp_precio, FILTER_VALIDATE_FLOAT);
-        }
 
-        if (!$temp_precio) {
-            $error_precio = "El precio debe ser un número";
-        } else {
-            $temp_precio = round($temp_precio, 2);
-            if ($temp_precio < 0) {
-                $error_precio = "El precio no puede ser negativo";
-            } else if ($temp_precio >= 1000) {
-                $error_precio = "El precio no puede ser superior a 1000";
+            if (!$temp_precio) {
+                $err_precio = "El precio debe ser un número";
             } else {
-                $precio = $temp_precio;
+                $temp_precio = round($temp_precio, 2);
+                if ($temp_precio < 0) {
+                    $err_precio = "El precio no puede ser negativo";
+                } else if ($temp_precio >= 10000) {
+                    $err_precio = "El precio no puede ser igual o superior a 10000";
+                } else {
+                    //  ¡ÉXITO!
+                    $precio = $temp_precio;
+                }
             }
         }
 
-        if (empty($temp_descripcion)) {
-            $error_descipcion = "La descripción es obligatoria";
-        } else {
-            if (strlen($temp_descripcion) >= 255) {
-                $error_descipcion = "La descripción no puede tener más de 255 carácteres";
-            } else {
-                $descripcion = $temp_descripcion;
-            }
+        if (isset($titulo) && isset($precio) && isset($consola) && isset($descripcion)) {
+            /*echo "<p>$titulo</p>";
+                echo "<p>$precio</p>";
+                echo "<p>$consola</p>";
+                echo "<p>$descripcion</p>";*/
         }
     }
 
-
-    if (isset($titulo) && isset($precio) && isset($consola)){
-        echo "<p>$titulo</p>";
-        echo "<p>$precio €</p>";
-        echo "<p>$consola</p>";
-    }
-
-
-    //Función que te ayuda a depurar el formulario
     function depurar($dato)
     {
         $dato = trim($dato);
@@ -88,81 +122,39 @@
         $dato = htmlspecialchars($dato);
         return $dato;
     }
-    /*  echo depurar($_POST["titulo"]);
-        echo "<br>";
-        echo depurar($_POST["precio"]); */
-
-    /* echo htmlspecialchars($_POST["titulo"]);
-    echo "<br>";
-    echo htmlspecialchars($_POST["precio"]); */
-
-    // var_dump(trim($_POST["titulo"])); //te cuenta las letras
-
-    //var_dump(stripslashes($_POST["titulo"])); //te quita las barra laterales de carácteres especiales
-
-
     ?>
-
-    <form action="" method="POST">
-        <p> Título: <input type="text" name="titulo">
-
+    <form action="" method="post" enctype="multipart/form-data">
+        <p>Título:
+            <input type="text" name="titulo">
             <span class="error">
-
-                * <?php
-
-                    if (isset($error_titulo)) echo $error_titulo
-
-                    ?>
-            </span>
-        </p>
-
-        <p> Precio: <input type="text" name="precio">
-            <span class="error">
-
-                * <?php
-
-                    if (isset($error_precio)) echo $error_precio
-
-                    ?>
+                * <?php if (isset($err_titulo)) echo $err_titulo ?>
             </span>
         </p>
         <p>
-            Consola:
+            Precio: <input type="text" name="precio">
+            <span class="error">
+                * <?php if (isset($err_precio)) echo $err_precio ?>
+            </span>
+        </p>
+        <p>Consola:
             <select name="consola">
-                <option value="" selected disabled hidden></option>
-                <option>PS5</option>
-                <option>PS4</option>
-                <option>Switch</option>
-                <option>PC</option>
+                <option value="" selected disabled hidden>Elige una consola</option>
+                <option value="ps4">Playstation 4</option>
+                <option value="ps5">Playstation 5</option>
+                <option value="switch">Nintendo Switch</option>
             </select>
-
-            <!-- <input type="select" name="consola"> -->
-
             <span class="error">
-                *<?php
-
-                    if (isset($error_consola)) echo $error_consola
-
-                    ?>
-
+                * <?php if (isset($err_consola)) echo $err_consola ?>
             </span>
         </p>
-        <p>
-            Descripción:
-            <textarea name="descripcion" placeholder="Max. 255 carácteres"></textarea>
+        <p>Descripción: <textarea name="descripcion"></textarea>
             <span class="error">
-
-                * <?php
-
-                if (isset($error_descipcion)) echo $error_descipcion
-
-                    ?>
+                * <?php if (isset($err_descripcion)) echo $err_descripcion ?>
             </span>
-
         </p>
+        <p>Imagen: <input type="file" name="imagen"></p>
         <p><input type="submit" value="Crear"></p>
     </form>
-
 </body>
 
 </html>
