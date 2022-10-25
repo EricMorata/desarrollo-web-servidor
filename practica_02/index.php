@@ -24,17 +24,64 @@
         $temp_email = depurar($_POST["email"]);
 
 
-
         if (empty($temp_dni)) {
-            $error_dni = "El DNI es obligatorio";
+            $error_dni = "El campo DNI es obligatorio";
         } else {
             $pattern = "/^[0-9]{8}[a-zA-Z]$/";
+
+
             if (!preg_match($pattern, $temp_dni)) {
-                $error_dni = "El dni debe de tener 8 dígitos y un carácter";
+                $error_dni = "El dni debe de tener 8 dígitos y un carácter ";
             } else {
-                $dni = $temp_dni;
+                $letras = strtoupper(substr($temp_dni, -1));
+                $temp_dni = substr($temp_dni, 0, -1);
+                if (substr("TRWAGMYFPDXBNJZSQVHLCKE", $temp_dni % 23, 1) == $letras && strlen($letras) == 1 &&  strlen($temp_dni) == 8) {
+                    $dni = $temp_dni;
+                    echo "<p>$dni</p>";
+                } else {
+                    $error_dni = "El dni debe de tener 8 dígitos y un carácter"; 
+                }
             }
         }
+        /*  if (empty($temp_dni)) {
+            $error_dni = "El DNI es obligatorio";
+        } else {
+
+            $letras = 'TRWAGMYFPDXBNJZSQVHLCKE';
+            $nLetras = strtoupper(substr($temp_dni, -1));
+            $temp_dni = substr($temp_dni, 0, -1); 
+            $pattern = "/^[0-9]{8}[a-zA-Z]{1}$/";
+            if (!substr("TRWAGMYFPDXBNJZSQVHLCKE", $temp_dni % 23, 1) == $letras && strlen($letras) == 1 &&  strlen($temp_dni == 8)){
+                $error_dni = "El dni debe de tener 8 dígitos y un carácter"; 
+             } if (!preg_match($pattern, $temp_dni)) {
+                $error_dni = "El dni debe de tener 8 dígitos y un carácter";
+            } else {
+                $temp_dni == $letras[$temp_dni % 23];
+                $dni = $temp_dni;
+            } */
+
+
+
+       /*  if (empty($temp_dni)) {
+            $error_dni = "El DNI es obligatorio";
+        } else {
+            $numero;
+            $letra;
+            $letr;
+            $pattern = "/^[0-9]{8}[a-zA-Z]{1}$/";
+        }
+        if (preg_match($pattern, $temp_dni)) {
+            $numero = $temp_dni . substr(0, strlen($temp_dni) == -1);
+            $letr = $temp_dni . substr(strlen($temp_dni) - 1, 1);
+            $numero = $numero % 23;
+            $letra = 'TRWAGMYFPDXBNJZSQVHLCKE';
+            $letra = substr($letra, $numero, $numero + 1);
+        } elseif ($letra != strtoupper($letr)) {
+            $error_dni = "Dni erroneo, la letra no coincide";
+        } else {
+            $dni = $temp_dni;
+        } */
+
 
         if (empty($temp_nombre)) {
             $error_nombre = "El nombre es obligatorio";
@@ -79,7 +126,26 @@
         }
 
 
+
         if (empty($temp_edad)) {
+            $error_edad = "La edad es obligatoria";
+        } else {
+            if ($temp_edad < 0 || $temp_edad > 120) {
+                $error_edad = "Esa edad no es correcta";
+            } else {
+                if ($temp_edad < 18) {
+                    $error_edad = "Eres menor de edad";
+                } else {
+                   (int)$edad = $temp_edad;
+                   echo "<p(int)$edad</p>";
+                }
+            }
+        }
+
+
+
+
+       /*  if (empty($temp_edad)) {
             $error_edad = "El campo edad es obligatorio";
         } else {
             if ($temp_edad >= 18) {
@@ -90,7 +156,7 @@
             } else {
                 $error_edad = "Eres menor de edad";
             }
-        }
+        } */
 
         if (empty($temp_email)) {
             $error_email = "El campo email es obligatorio";
@@ -103,7 +169,7 @@
                 $error_email = "No puedes usar palabras malsonantes";
             } elseif (str_contains($temp_email, 'follacabras')) {
                 $error_email = "No puedes usar palabras malsonantes";
-            } else{
+            } else {
                 $email = $temp_email;
                 echo "<p>$email</p>";
             }
@@ -121,7 +187,7 @@
         return $dato;
     }
     ?>
-    <p>
+    <!-- <p>
         Crea un formulario con los siguientes campos: DNI, Nombre,
         Primer apellido, Segundo apellido, Edad y Correo electrónico. Valida el formulario mediante PHP.
         Crea un archivo index.php dentro de una carpeta llamada "practica_02" donde se muestre el formulario.
@@ -142,7 +208,7 @@
         El correo electrónico deberá estar en formato correcto. No se permitirán además correos
         electrónicos que contengan palabras malsonantes (basta con que vetéis 3 palabras malsonantes).
         Utilizar la función str_contains.
-    </p>
+    </p> -->
 
     <form action="" method="POST">
 
