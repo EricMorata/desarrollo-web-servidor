@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link type="text/css" rel="stylesheet" href="./styles.css">
     <title>Practica 2</title>
 </head>
 
@@ -39,7 +39,7 @@
                     $dni = $temp_dni;
                     echo "<p>$dni</p>";
                 } else {
-                    $error_dni = "El dni debe de tener 8 dígitos y un carácter"; 
+                    $error_dni = "El dni debe de tener 8 dígitos y un carácter";
                 }
             }
         }
@@ -62,7 +62,7 @@
 
 
 
-       /*  if (empty($temp_dni)) {
+        /*  if (empty($temp_dni)) {
             $error_dni = "El DNI es obligatorio";
         } else {
             $numero;
@@ -136,8 +136,8 @@
                 if ($temp_edad < 18) {
                     $error_edad = "Eres menor de edad";
                 } else {
-                   (int)$edad = $temp_edad;
-                   echo "<p(int)$edad</p>";
+                    (int)$edad = $temp_edad;
+                    echo "<p(int)$edad</p>";
                 }
             }
         }
@@ -145,7 +145,7 @@
 
 
 
-       /*  if (empty($temp_edad)) {
+        /*  if (empty($temp_edad)) {
             $error_edad = "El campo edad es obligatorio";
         } else {
             if ($temp_edad >= 18) {
@@ -209,66 +209,67 @@
         electrónicos que contengan palabras malsonantes (basta con que vetéis 3 palabras malsonantes).
         Utilizar la función str_contains.
     </p> -->
+    <div class="formulario">
+        <form action="" method="POST">
 
-    <form action="" method="POST">
+            <label for="dni"></label><br>
+            <input type="text" name="dni" placeholder="DNI">
+            <span class="error">
+                *<?php
+                    if (isset($error_dni)) echo $error_dni
+                    ?>
+            </span>
+            <br><br>
 
-        <label for="dni">DNI:</label><br>
-        <input type="text" name="dni" placeholder="8 carácteres y una letra">
-        <span class="error">
-            *<?php
-                if (isset($error_dni)) echo $error_dni
-                ?>
-        </span>
-        <br><br>
+            <label for="nombre"></label><br>
+            <input type="text" name="nombre" placeholder="Nombre">
+            <span class="error">
+                *<?php
+                    if (isset($error_nombre)) echo $error_nombre
+                    ?>
+            </span>
+            <br><br>
 
-        <label for="nombre">Nombre:</label><br>
-        <input type="text" name="nombre" placeholder="Nombre completo">
-        <span class="error">
-            *<?php
-                if (isset($error_nombre)) echo $error_nombre
-                ?>
-        </span>
-        <br><br>
+            <label for="primerApellido"></label><br>
+            <input type="text" name="primerApellido" placeholder="Primer apellido">
+            <span class="error">
+                *<?php
+                    if (isset($error_primerApellido)) echo $error_primerApellido
+                    ?>
+            </span>
+            <br><br>
 
-        <label for="primerApellido">Primer apellido:</label><br>
-        <input type="text" name="primerApellido" placeholder="Primer apellido">
-        <span class="error">
-            *<?php
-                if (isset($error_primerApellido)) echo $error_primerApellido
-                ?>
-        </span>
-        <br><br>
+            <label for="segundoApellido"></label><br>
+            <input type="text" name="segundoApellido" placeholder="Segundo apellido">
+            <span class="error">
+                *<?php
+                    if (isset($error_segundoApellido)) echo $error_segundoApellido
+                    ?>
+            </span>
+            <br><br>
 
-        <label for="segundoApellido">Segundo apellido:</label><br>
-        <input type="text" name="segundoApellido" placeholder="Segundo apellido">
-        <span class="error">
-            *<?php
-                if (isset($error_segundoApellido)) echo $error_segundoApellido
-                ?>
-        </span>
-        <br><br>
+            <label for="edad"></label><br>
+            <input type="text" name="edad" placeholder="Edad:">
+            <span class="error">
+                *<?php
+                    if (isset($error_edad)) echo $error_edad
+                    ?>
+            </span>
+            <br><br>
 
-        <label for="edad">Edad:</label><br>
-        <input type="text" name="edad" placeholder="Indicame tu edad en Números">
-        <span class="error">
-            *<?php
-                if (isset($error_edad)) echo $error_edad
-                ?>
-        </span>
-        <br><br>
+            <label for="email"></label><br>
+            <input type="text" name="email" placeholder="Email:">
+            <span class="error">
+                *<?php
+                    if (isset($error_email)) echo $error_email
+                    ?>
+            </span>
+            <br><br>
 
-        <label for="email">Email:</label><br>
-        <input type="text" name="email" placeholder="example@email.com">
-        <span class="error">
-            *<?php
-                if (isset($error_email)) echo $error_email
-                ?>
-        </span>
-        <br><br>
+            <input type="submit" value="Enviar">
 
-        <input type="submit" value="Enviar">
-
-    </form>
+        </form>
+    </div>
 
 </body>
 
