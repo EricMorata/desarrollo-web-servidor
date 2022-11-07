@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
-    <title>Document</title>
+    <title>Index prendas</title>
 </head>
 
 <body>
-    <?php
-    require '../../util/database.php';
-    ?>
     <div class="container">
+        <?php
+        require '../header.php';
+        ?>
         <h1>Listado de prendas</h1>
         <div class="row">
             <div class="col-9">
@@ -30,6 +30,8 @@
                         </tr>
                     <tbody>
                         <?php
+
+                        require '../../util/database.php';
 
                         $sql = "SELECT * FROM prendas";
                         $resultado = $conexion->query($sql);
@@ -58,6 +60,9 @@
                     </thead>
                 </table>
 
+            </div>
+            <div class="col-3">
+                <img width="300" height="307" src="../../resources/images/ropa.jpeg">
             </div>
         </div>
     </div>
