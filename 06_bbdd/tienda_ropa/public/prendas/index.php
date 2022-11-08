@@ -11,9 +11,11 @@
 </head>
 
 <body>
+
     <div class="container">
         <?php
         require '../header.php';
+        require '../../util/database.php';
         ?>
         <h1>Listado de prendas</h1>
         <div class="row">
@@ -27,11 +29,37 @@
                             <th>Talla</th>
                             <th>Precio</th>
                             <th>Categoria</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     <tbody>
-                        <?php
 
-                        require '../../util/database.php';
+
+                        <?php //BORRAR PRENDA
+
+
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            $id = $_POST["id"];
+
+                            $sql = "DELETE FROM prendas WHERE id = '$id'";
+
+                            if ($conexion->query($sql)) {
+
+                        ?>
+
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Se ha eliminado la prenda
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                        <?php
+                            } else {
+                                echo "<p>Error al eliminar</p>";
+                            }
+                        }
+
+                        ?>
+
+                        <?php //SELECCIONAR PRENDAS 
 
                         $sql = "SELECT * FROM prendas";
                         $resultado = $conexion->query($sql);
@@ -49,6 +77,18 @@
                                     <td><?php echo $talla ?></td>
                                     <td><?php echo $precio ?></td>
                                     <td><?php echo $categoria ?></td>
+                                    <td>
+                                        <form action="mostrar_prendas.php" method="GET">
+                                            <button class="btn btn-primary" type="submit">Ver</button>
+                                            <input type="hidden" name="id" value="<?php echo $fila["id"] ?>">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="" method="POST">
+                                            <button class="btn btn-danger" type="submit">Borrar</button>
+                                            <input type="hidden" name="id" value="<?php echo $fila["id"] ?>">
+                                        </form>
+                                    </td>
                                 </tr>
                         <?php
                             }
