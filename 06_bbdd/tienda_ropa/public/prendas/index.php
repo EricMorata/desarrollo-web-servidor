@@ -33,32 +33,31 @@
                             <th></th>
                             <th></th>
                         </tr>
+                    </thead>
                     <tbody>
 
-
                         <?php //BORRAR PRENDA
-
 
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $id = $_POST["id"];
 
-                            //CONSULTA BORRART IMAGEN
+                            //CONSULTA PARA COGER LA RUTA DE LA IMAGEN Y LUEGO BORRARLA
+
                             $sql = "SELECT imagen FROM prendaas WHERE id = '$id'";
-                            $resultado = $conexion -> query($sql);
-                            if($resultado -> num_rows > 0){
-                                while ($fila = $resultado -> fetch_assoc()){
+                            $resultado = $conexion->query($sql);
+
+                            if ($resultado->num_rows > 0) {
+                                while ($fila = $resultado->fetch_assoc()) {
                                     $imagen = $fila["imagen"];
                                 }
-                                unlink("../.." .$imagen);
+                                unlink("../.." . $imagen);
                             }
 
-                            //CONSULTA BORRAR PRENDA
+                            //CONSULTA PARA BORRAR LA PRENDA
                             $sql = "DELETE FROM prendas WHERE id = '$id'";
 
                             if ($conexion->query($sql)) {
-
                         ?>
-
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Se ha eliminado la prenda
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -68,7 +67,6 @@
                                 echo "<p>Error al eliminar</p>";
                             }
                         }
-
                         ?>
 
                         <?php //SELECCIONAR PRENDAS 
@@ -83,13 +81,13 @@
                                 $talla = $fila["talla"];
                                 $precio = $fila["precio"];
                                 $categoria = $fila["categoria"];
-                                $imagen = $fila ["imagen"];
+                                $imagen = $fila["imagen"];
                         ?>
                                 <tr>
                                     <td><?php echo $nombre ?></td>
                                     <td>
                                         <img width="50" height="60" src="../..<?php echo $imagen ?>">
-                                </td>
+                                    </td>
                                     <td><?php echo $talla ?></td>
                                     <td><?php echo $precio ?></td>
                                     <td><?php echo $categoria ?></td>
@@ -112,10 +110,7 @@
                         ?>
 
                     </tbody>
-
-                    </thead>
                 </table>
-
             </div>
             <div class="col-3">
                 <img width="300" height="307" src="../../resources/images/ropa.jpeg">
@@ -123,9 +118,7 @@
         </div>
     </div>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
 </body>
 
 </html>

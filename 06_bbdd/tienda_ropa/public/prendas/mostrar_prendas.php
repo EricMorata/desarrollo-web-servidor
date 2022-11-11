@@ -16,7 +16,6 @@
         <?php require '../header.php' ?>
 
         <h1>Ver prenda</h1>
-
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $id = $_GET["id"];
