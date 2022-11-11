@@ -26,6 +26,7 @@
                     <thead class="table-dark">
                         <tr>
                             <th>Nombre</th>
+                            <th></th>
                             <th>Talla</th>
                             <th>Precio</th>
                             <th>Categoria</th>
@@ -41,6 +42,17 @@
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $id = $_POST["id"];
 
+                            //CONSULTA BORRART IMAGEN
+                            $sql = "SELECT imagen FROM prendaas WHERE id = '$id'";
+                            $resultado = $conexion -> query($sql);
+                            if($resultado -> num_rows > 0){
+                                while ($fila = $resultado -> fetch_assoc()){
+                                    $imagen = $fila["imagen"];
+                                }
+                                unlink("../.." .$imagen);
+                            }
+
+                            //CONSULTA BORRAR PRENDA
                             $sql = "DELETE FROM prendas WHERE id = '$id'";
 
                             if ($conexion->query($sql)) {
@@ -71,9 +83,13 @@
                                 $talla = $fila["talla"];
                                 $precio = $fila["precio"];
                                 $categoria = $fila["categoria"];
+                                $imagen = $fila ["imagen"];
                         ?>
                                 <tr>
                                     <td><?php echo $nombre ?></td>
+                                    <td>
+                                        <img width="50" height="60" src="../..<?php echo $imagen ?>">
+                                </td>
                                     <td><?php echo $talla ?></td>
                                     <td><?php echo $precio ?></td>
                                     <td><?php echo $categoria ?></td>

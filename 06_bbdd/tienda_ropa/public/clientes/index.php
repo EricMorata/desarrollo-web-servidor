@@ -14,6 +14,7 @@
     <div class="container">
         <?php
         require '../header.php';
+        require '../../util/database.php';
         ?>
         <h1>Listado de clientes</h1>
         <div class="row">
@@ -28,14 +29,44 @@
                             <th>Primer apellido</th>
                             <th>Segundo apellido</th>
                             <th>Fecha nacimiento</th>
+                            <th></th>
+                            <th></th>
                         </tr>
-                        <tbody>
-                            <?php
-                            require '../../util/database.php';
+                    <tbody>
+                        <?php
+
+                        //BORRAR CLIENTES 
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            $id = $_POST["id"];
+
+                            $sql = "DELETE FROM clientes WHERE id = '$id'";
+                            if ($conexion->query($sql)) {
+
+
+                        ?>
+
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Se ha eliminado el cliente
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                        <?php
+                            } else {
+                                echo "<p>Error al eliminar</p>";
+                            }
+                        }
+
+                        ?>
+
+
+                       
+                        <?php
+
+                         //Selecionar clientes
+
 
                         $sql = "SELECT * FROM clientes";
                         $resultado = $conexion->query($sql);
-                        if ($resultado->num_rows > 0) { 
+                        if ($resultado->num_rows > 0) {
                             while ($fila = $resultado->fetch_assoc()) {
 
                                 $usuario = $fila["usuario"];
@@ -43,20 +74,38 @@
                                 $apellido_1 = $fila["apellido_1"];
                                 $apellido_2 = $fila["apellido_2"];
                                 $fecha_nacimiento = $fila["fecha_nacimiento"];
-                            ?>
+                                
 
-                            <tr>
-                                <td><?php echo $usuario ?></td>
-                                <td><?php echo $nombre ?></td>
-                                <td><?php echo $apellido_1 ?></td>
-                                <td><?php echo $apellido_2 ?></td>
-                                <td><?php echo $fecha_nacimiento ?></td>
-                            </tr>
-                            <?php
+                        ?>
+
+
+
+
+
+                                <tr> 
+                                    <td><?php echo $usuario ?></td>
+                                    <td><?php echo $nombre ?></td>
+                                    <td><?php echo $apellido_1 ?></td>
+                                    <td><?php echo $apellido_2 ?></td>
+                                    <td><?php echo $fecha_nacimiento ?></td>
+                                    <td>
+                                        <form action="mostrar_cliente.php" method="GET">
+                                            <button class="btn btn-primary" type="submit">Ver</button>
+                                            <input type="hidden" name="id" value="<?php echo $fila["id"] ?>">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="" method="POST">
+                                            <button class="btn btn-danger" type="submit">Borrar</button>
+                                            <input type="hidden" name="id" value="<?php echo $fila["id"] ?>">
+                                        </form>
+                                    </td>
+                                </tr>
+                        <?php
                             }
                         }
                         ?>
-                        </tbody>
+                    </tbody>
                     </thead>
                 </table>
             </div>
