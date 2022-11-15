@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <?php require '../header.php' ?>
-        <?php require '../../util/database.php' ?>
+        <?php require '../../util/database.php' ?>  
 
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "GET") {

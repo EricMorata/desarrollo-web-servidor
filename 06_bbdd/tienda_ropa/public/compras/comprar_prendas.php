@@ -15,17 +15,27 @@
         <?php require '../../util/database.php' ?>
         <?php require '../header.php' ?>
 
-        <h1>Comprar prendas</h1>
+        <?php
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $prenda_id = $_POST["prenda_id"];
+    $cantidad = $_POST["cantidad"];
+    $cliente_id = 1;
+    $fecha = date('Y-m-d H:i:s');
 
-        <!--   Las prendas aparecerán listadas con la siguiente información:
-             nombre, precio e imagen. Además habrá un campo "select" 
-             para seleccionar la cantidad deseada (mín 1 y máx 5). 
-             Habrá un botón de comprar para cada prenda, 
-             y al pulsarlo se insertará un registro en la tabla "clientes_prendas" 
-             con la prenda seleccionada, la cantidad y la fecha actual.
-              El usuario que se insertará estará "hardcodeado" y será siempre el mismo
-               (a libre elección).
- -->
+    $sql = "INSERT INTO clientes_prendas 
+                (cliente_id, prenda_id, cantidad, fecha) 
+                VALUES 
+                ('$cliente_id', '$prenda_id', '$cantidad', '$fecha')";
+
+    if($conexion -> query($sql)== "TRUE"){
+        echo "<p>Compra realizada</p>";
+    } else {
+        echo "<p>Error al comprar</p>";
+    }
+}
+        ?>
+
+        <h1>Comprar prendas</h1>
 
         <div class="row">
             <div class="col-9">
@@ -42,57 +52,45 @@
                     </thead>
                     <tbody>
 
-                        <?php
-                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                            $id = $_POST["id"];
-                            $nombre = $_POST["nombre"];
-                            $precio = $_POST["precio"];
-                            $imagen = $_POST["imagen"];
-                            $cantidad = $_POST["cantidad"];
-                        }
-                        ?>
+
                         <?php //SELECCIONAR PRENDAS 
                         $sql = "SELECT * FROM prendas";
                         $resultado = $conexion->query($sql);
                         if ($resultado->num_rows > 0) {
                             while ($fila = $resultado->fetch_assoc()) {
-                                $nombre = $fila["nombre"];
-                                $precio = $fila["precio"];
-                                $imagen = $fila["imagen"];
+
                         ?>
-                        
-                                <tr>
-                                    <td><?php echo $nombre ?></td>
-                                    <td><?php echo $precio ?></td>
-                                    <td>
-                                        <img width="50" height="60" src="../..<?php echo $imagen ?>">
-                                    </td>
-                                    <td> 
-                                    <select class="form-select" name="cantidad">
-                        <option value="" selected disabled hidden>-- Selecciona la cantidad --</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                                    </td>
-                                    <td>
-                                        <form action="cliente_compras.php" method="POST">
+                                <form action="" method="POST">
+                                    <tr>
+                                        <td><?php echo $fila["nombre"] ?></td>
+                                        <td><?php echo $fila["precio"]  ?></td>
+                                        <td>
+                                            <img width="50" height="60" src="../..<?php echo $fila["imagen"] ?>">
+                                        </td>
+                                        <td>
+                                            <select class="form-select" name="cantidad">
+                                                <option value="" selected disabled hidden>-- Selecciona la cantidad --</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                        </td>
+                                        <td>
                                             <button class="btn btn-dark" type="submit">Comprar</button>
-                                            <input type="hidden" name="id" value="<?php echo $fila["id"] ?>">
-                                        </form>
-                                    </td>
-                                   
-                                </tr>
-                        <?php
+                                            <input type="hidden" name="prenda_id" value="<?php echo $fila["id"] ?>">
+                                        </td>
+                                    </tr>
+                                </form>
+                            <?php
                             }
                         }
-                        ?>
+                            ?>
 
                     </tbody>
                 </table>
             </div>
-           
+
         </div>
     </div>
 
