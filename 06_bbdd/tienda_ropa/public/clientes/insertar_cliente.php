@@ -20,34 +20,39 @@
         $apellido_1 = $_POST["apellido_1"];
         $apellido_2 = $_POST["apellido_2"];
         $fecha_nacimiento = $_POST["fecha_nacimiento"];
+        $contrasenia = $_POST["contrasenia"];
 
-        if (isset($_POST["apellido_2"])) {
-            $apellido_2 = $_POST["apellido_2"];
+        $hash_contrasenia = password_hash($contrasenia, PASSWORD_DEFAULT);
+
+        if (!empty($usuario) && !empty($nombre) && 
+        !empty($apellido_1 && 
+        !empty($fecha_nacimiento) && !empty($contrasenia))) {
+
+        $apellido_2 = 
+            !empty($apellido_2) ? "'$apellido_2'" : "NULL";
+
+
+        $sql = "INSERT INTO clientes (usuario, nombre, 
+            apellido_1, apellido_2, 
+            fecha_nacimiento, contrasenia) VALUES ('$usuario', '$nombre',
+            '$apellido_1', $apellido_2,
+            '$fecha_nacimiento', '$hash_contrasenia')";
+
+        if ($conexion -> query($sql) == "TRUE") {
+            echo "<p>Cliente insertado</p>";
         } else {
-            $apellido_2 = "";
-        };
-
-        if (!empty($usuario) && !empty($nombre) && !empty($apellido_1) && !empty($fecha_nacimiento)) {
-            if (!empty($apellido_2)) {
-                $sql = "INSERT INTO clientes(usuario, nombre, apellido_1, apellido_2, fecha_nacimiento)
-                VALUES ('$usuario','$nombre','$apellido_1', '$apellido_2','$fecha_nacimiento')";
-            } else {
-                $sql = "INSERT INTO clientes(usuario, nombre, apellido_1,  fecha_nacimiento)
-                VALUES ('$usuario','$nombre','$apellido_1', '$fecha_nacimiento')";
-            }
-            if ($conexion->query($sql) == "TRUE") {
-                echo "<div class= alert alert-success role= alert>Cliente insertado</div>";
-            } else {
-                echo "<div class= alert alert-danger role=alert>Cliente No Insertado</div>";
-            }
+            echo "<p>Error al insertar</p>";
         }
+    }
+
+       
     }
     ?>
 
 
 
     <div class="container">
-        <h1>Nueva cliente</h1>
+        <h1>Nuevo cliente</h1>
         <div class="row">
             <div class="col-6">
                 <form action="" method="POST">
@@ -78,22 +83,16 @@
                         <input class="form-control" type="date" name="fecha_nacimiento">
                     </div>
 
-
-
+                    <div class="form-group mt-5 mb-3">
+                        <label class="form-label">Contraseña</label>
+                        <input class="form-control" name="contrasenia" type="password">
+                    </div>
+                  
                     <button class="btn btn-primary" type="submit">Crear</button>
                     <a class="btn btn-secondary" href="./index.php">Volver</a>
-
-
-
                 </form>
-
-
             </div>
-
-
         </div>
-
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
