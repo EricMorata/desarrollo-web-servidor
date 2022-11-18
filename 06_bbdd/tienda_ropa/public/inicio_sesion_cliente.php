@@ -10,14 +10,13 @@
 </head>
 <body>
 
-<?php require '../../util/database.php'?>
+<?php 
+require '../../util/database.php';
+?>
 <?php
-require '../header.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST["usuario"];
     $contrasenia = $_POST["contrasenia"];
-
-    
 
     $sql = "SELECT * FROM clientes WHERE usuario = '$usuario'";
     $resultado = $conexion -> query($sql);
@@ -25,11 +24,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if($resultado -> num_rows > 0){
         while ($fila = $resultado ->fetch_assoc()){
             $hash_contrasenia = $fila["contrasenia"];
+            $rol = $fila["rol"];
         }
         $acceso_valido = password_verify($contrasenia, $hash_contrasenia);
    
         if($acceso_valido == TRUE){
-            echo "<h2>Acceso válido</h2>";
+            session_start();
+            $_SESSION["usuario"]=$usuario;
+            $_SESSION["rol"]=$rol;
+
+            header('location:http://localhost/06_bbdd/tienda_ropa/public/');
         }else{
             echo "<h2>Contraseña equivocada</h2>";
         }
@@ -56,13 +60,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                     <div class="form-group mb-3">
                     <button class="btn btn-primary" type="submit">Login</button>
+                    <a class="btn btn-secondary" href="registro.php">Registrarse</a>
                         <button class="btn btn-dark" type="reset">Reset</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 

@@ -12,8 +12,15 @@
 
 <body>
     <div class="container">
-        <?php require '../header.php' ?>
-        <?php require '../../util/database.php' ?>  
+        <?php 
+         require '../../util/control_acceso.php';
+        
+         require '../header.php';
+
+         require '../../util/database.php';
+        
+        ?>
+      
 
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -40,6 +47,7 @@
                         <?php
                         $sql = "SELECT * FROM vw_clientes_prendas
                             WHERE usuario = '$usuario'";
+                            
                         $resultado = $conexion->query($sql);
                         $precio_total = 0;
 

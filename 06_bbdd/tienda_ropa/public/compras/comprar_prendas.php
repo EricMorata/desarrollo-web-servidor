@@ -12,27 +12,50 @@
 
 <body>
     <div class="container">
-        <?php require '../../util/database.php' ?>
-        <?php require '../header.php' ?>
+        
 
         <?php
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $prenda_id = $_POST["prenda_id"];
-    $cantidad = $_POST["cantidad"];
-    $cliente_id = 1;
-    $fecha = date('Y-m-d H:i:s');
+ require '../../util/control_acceso.php';
 
-    $sql = "INSERT INTO clientes_prendas 
+ require '../header.php';
+
+
+ require '../../util/database.php';
+
+
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $prenda_id = $_POST["prenda_id"];
+            $cantidad = $_POST["cantidad"];
+            //$cliente_id = 1;
+            $fecha = date('Y-m-d H:i:s');
+
+            //bUSCAR EL ID DEL CLIENTE QUE INICIA SESIÓN
+            $usuario = $_SESSION["usuario"];
+
+            $sql = "SELECT * FROM clientes WHERE usuario = '$usuario'";
+
+            $resultado = $conexion -> query($sql);
+
+            if ($resultado->num_rows > 0) {
+                while ($fila = $resultado->fetch_assoc()) {
+                    $cliente_id = $fila["id"];
+                }
+            }
+            //FIN DE LA BUSQUEDA
+
+
+            $sql = "INSERT INTO clientes_prendas 
                 (cliente_id, prenda_id, cantidad, fecha) 
                 VALUES 
                 ('$cliente_id', '$prenda_id', '$cantidad', '$fecha')";
 
-    if($conexion -> query($sql)== "TRUE"){
-        echo "<p>Compra realizada</p>";
-    } else {
-        echo "<p>Error al comprar</p>";
-    }
-}
+            if ($conexion->query($sql) == "TRUE") {
+                echo "<p>Compra realizada</p>";
+            } else {
+                echo "<p>Error al comprar</p>";
+            }
+        }
         ?>
 
         <h1>Comprar prendas</h1>
@@ -56,9 +79,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                         <?php //SELECCIONAR PRENDAS 
                         $sql = "SELECT * FROM prendas";
                         $resultado = $conexion->query($sql);
+
                         if ($resultado->num_rows > 0) {
                             while ($fila = $resultado->fetch_assoc()) {
-
                         ?>
                                 <form action="" method="POST">
                                     <tr>
@@ -77,15 +100,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                                                 <option value="5">5</option>
                                         </td>
                                         <td>
-                                            <button class="btn btn-dark" type="submit">Comprar</button>
                                             <input type="hidden" name="prenda_id" value="<?php echo $fila["id"] ?>">
+                                            <button class="btn btn-dark" type="submit">Comprar</button>
                                         </td>
                                     </tr>
                                 </form>
-                            <?php
+                        <?php
                             }
                         }
-                            ?>
+                        ?>
 
                     </tbody>
                 </table>

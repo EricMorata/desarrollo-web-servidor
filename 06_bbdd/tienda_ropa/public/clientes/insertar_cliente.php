@@ -12,7 +12,10 @@
 
 <body>
     <?php
+   
+    require '../../util/control_acceso.php';
     require '../../util/database.php';
+    require '../header.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario = $_POST["usuario"];
@@ -20,13 +23,11 @@
         $apellido_1 = $_POST["apellido_1"];
         $apellido_2 = $_POST["apellido_2"];
         $fecha_nacimiento = $_POST["fecha_nacimiento"];
-        $contrasenia = $_POST["contrasenia"];
-
-        $hash_contrasenia = password_hash($contrasenia, PASSWORD_DEFAULT);
+        
 
         if (!empty($usuario) && !empty($nombre) && 
         !empty($apellido_1 && 
-        !empty($fecha_nacimiento) && !empty($contrasenia))) {
+        !empty($fecha_nacimiento))) {
 
         $apellido_2 = 
             !empty($apellido_2) ? "'$apellido_2'" : "NULL";
@@ -34,9 +35,9 @@
 
         $sql = "INSERT INTO clientes (usuario, nombre, 
             apellido_1, apellido_2, 
-            fecha_nacimiento, contrasenia) VALUES ('$usuario', '$nombre',
+            fecha_nacimiento) VALUES ('$usuario', '$nombre',
             '$apellido_1', $apellido_2,
-            '$fecha_nacimiento', '$hash_contrasenia')";
+            '$fecha_nacimiento')";
 
         if ($conexion -> query($sql) == "TRUE") {
             echo "<p>Cliente insertado</p>";
@@ -83,11 +84,6 @@
                         <input class="form-control" type="date" name="fecha_nacimiento">
                     </div>
 
-                    <div class="form-group mt-5 mb-3">
-                        <label class="form-label">Contraseña</label>
-                        <input class="form-control" name="contrasenia" type="password">
-                    </div>
-                  
                     <button class="btn btn-primary" type="submit">Crear</button>
                     <a class="btn btn-secondary" href="./index.php">Volver</a>
                 </form>

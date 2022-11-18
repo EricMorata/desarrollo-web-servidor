@@ -11,8 +11,10 @@
 
 <body>
     <?php
-    require '../../util/database.php';
-
+     require '../../util/control_acceso.php';
+     require '../../util/database.php';
+     require '../header.php';
+     
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $id = $_GET["id"];
         $nombre = $_GET["nombre"];

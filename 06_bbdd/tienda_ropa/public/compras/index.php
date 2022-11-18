@@ -11,8 +11,13 @@
 </head>
 
 <body>
-    <?php require '../../util/database.php'  ?>
-    <?php require '../header.php' ?>
+<?php 
+ require '../../util/control_acceso.php';
+ require '../../util/database.php';
+ require '../header.php';
+?>
+    
+    
 
     <div class="container">
         <h1>Listado de compras</h1>
@@ -50,11 +55,6 @@
                                     <td><?php echo $fecha ?></td>
                                 </tr>
                         <?php
-                                /*  CUANDO SE PULSE EN UN USUARIO
-                                    SE MOSTRARÁN LAS COMPRAS DE ESE
-                                    USUARIO Y EL TOTAL QUE HA GASTADO
-                                    (EN UN FICHERO NUEVO)
-                                */
                             }
                         }
                         ?>

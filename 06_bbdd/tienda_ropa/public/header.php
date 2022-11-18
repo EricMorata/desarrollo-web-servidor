@@ -6,18 +6,25 @@
       </svg>
       Cenec Modas
     </a>
-
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="http://localhost/06_bbdd/tienda_ropa/public/">Inicio</a>
-        <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/prendas/insertar_prenda.php">Prendas</a>
-        <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/clientes/insertar_cliente.php">Clientes <span class="badge bg-success">New</span></a>
-        <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/compras/">Compras</a>
-        <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/clientes/inicio_sesion_cliente.php">Login</a>
-
+        <?php
+        if ($_SESSION["rol"] == "administrador") {
+        ?>
+          <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/prendas/">Prendas</a>
+          <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/clientes/">Clientes <span class="badge bg-success">New</span></a>
+          <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/compras/">Compras</a>
+        <?php
+        }
+        ?>
+        <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/compras/comprar_prendas.php">Nueva compra</a>
+        <a class="nav-link" href="">Historial compras</a>
+        <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/cerrar_sesion_cliente.php">Cerrar sesión</a>
+        <a class="nav-link" href=""><?php echo $_SESSION["usuario"] ?></a>
       </div>
     </div>
   </div>

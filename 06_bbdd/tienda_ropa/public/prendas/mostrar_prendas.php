@@ -12,8 +12,11 @@
 
 <body>
     <div class="container">
-        <?php require '../../util/database.php' ?>
-        <?php require '../header.php' ?>
+      <?php 
+ require '../../util/control_acceso.php';
+ require '../../util/database.php';
+ require '../header.php';
+      ?>
 
         <h1>Ver prenda</h1>
         <?php

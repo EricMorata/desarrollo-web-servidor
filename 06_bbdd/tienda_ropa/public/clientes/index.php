@@ -11,11 +11,14 @@
 </head>
 
 <body>
+
     <div class="container">
-        <?php
-        require '../header.php';
+    <?php
+        require '../../util/control_acceso.php';
         require '../../util/database.php';
-        ?>
+        require '../header.php';
+?>
+<br>
         <h1>Listado de clientes</h1>
         <div class="row">
             <div class="col-9">
@@ -25,7 +28,6 @@
                     <thead class="table-dark">
                         <tr>
                             <th>Usuario</th>
-                            <!--<th>Avatar</th>-->
                             <th>Nombre</th>
                             <th>Primer apellido</th>
                             <th>Segundo apellido</th>
@@ -70,13 +72,10 @@
                                 $apellido_1 = $fila["apellido_1"];
                                 $apellido_2 = $fila["apellido_2"];
                                 $fecha_nacimiento = $fila["fecha_nacimiento"];
-                                //$avatar = $fila["avatar"];
+                                
                         ?>
                                 <tr>
                                     <td><?php echo $usuario ?></td>
-                                    <!--<td>
-                                            <img width="50" height="60" src="../..<?/*php echo $avatar*/ ?>">
-                                        </td>-->
                                     <td><?php echo $nombre ?></td>
                                     <td><?php echo $apellido_1 ?></td>
                                     <td><?php echo $apellido_2 ?></td>

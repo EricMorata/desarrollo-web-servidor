@@ -11,8 +11,9 @@
 
 <body>
     <?php
-    require '../../util/database.php';
-
+   require '../../util/control_acceso.php';
+   require '../../util/database.php';
+   
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         $nombre = $_POST["nombre"];
         $talla = $_POST["talla"];
