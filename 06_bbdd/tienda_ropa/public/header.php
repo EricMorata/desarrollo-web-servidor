@@ -1,31 +1,77 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<link rel="stylesheet" href="../resources/images/style.css">
+<nav class="navbar" style="background-color: #e3f2fd;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="http://localhost/06_bbdd/tienda_ropa/public/">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
-        <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />
-      </svg>
-      Cenec Modas
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="http://localhost/06_bbdd/tienda_ropa/public/">Inicio</a>
-        <?php
-        if ($_SESSION["rol"] == "administrador") {
-        ?>
-          <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/prendas/">Prendas</a>
-          <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/clientes/">Clientes <span class="badge bg-success">New</span></a>
-          <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/compras/">Compras</a>
-        <?php
-        }
-        ?>
-        <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/compras/comprar_prendas.php">Nueva compra</a>
-        <a class="nav-link" href="">Historial compras</a>
-        <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/cerrar_sesion_cliente.php">Cerrar sesión</a>
-        <a class="nav-link" href=""><?php echo $_SESSION["usuario"] ?></a>
+    <a class="navbar-brand" href="#">Cenec Modas</a>
+    <div class="d-flex flex-row">
+      <div class="p-1">
+        <a class="nav-link flex" href="http://localhost/06_bbdd/tienda_ropa/public/cerrar_sesion_cliente.php">
+            Cerrar sesión
+          </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+            Cenec Modas
+          </h5>
+
+          <a class="nav-link" href="">
+            <svg class="svg-icon" viewBox="0 0 20 20">
+              <path d="M12.075,10.812c1.358-0.853,2.242-2.507,2.242-4.037c0-2.181-1.795-4.618-4.198-4.618S5.921,4.594,5.921,6.775c0,1.53,0.884,3.185,2.242,4.037c-3.222,0.865-5.6,3.807-5.6,7.298c0,0.23,0.189,0.42,0.42,0.42h14.273c0.23,0,0.42-0.189,0.42-0.42C17.676,14.619,15.297,11.677,12.075,10.812 M6.761,6.775c0-2.162,1.773-3.778,3.358-3.778s3.359,1.616,3.359,3.778c0,2.162-1.774,3.778-3.359,3.778S6.761,8.937,6.761,6.775 M3.415,17.69c0.218-3.51,3.142-6.297,6.704-6.297c3.562,0,6.486,2.787,6.705,6.297H3.415z"></path>
+            </svg>
+            <?php echo $_SESSION["usuario"] ?>
+          </a>
+
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="http://localhost/06_bbdd/tienda_ropa/public/">Home</a>
+            </li>
+            <?php
+            if ($_SESSION["rol"] == "administrador") {
+            ?>
+              <li class="nav-item">
+                <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/prendas/">Prendas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/clientes/">Clientes
+                  <!-- <span class="badge bg-success">New</span> -->
+                </a>
+              </li>
+              <li class="nav-item"></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Compras
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/compras/">Compras</a>
+                  </li>
+                <?php
+              }
+                ?>
+                <li>
+                  <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/compras/comprar_prendas.php">Nueva compra</a>
+                </li>
+
+                <li>
+                  <a class="nav-link" href="http://localhost/06_bbdd/tienda_ropa/public/compras/cliente_compras.php?usuario=">Historial compras</a>
+
+                </li>
+                </ul>
+              </li>
+          </ul>
+          <form class="d-flex mt-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-primary" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
 </nav>

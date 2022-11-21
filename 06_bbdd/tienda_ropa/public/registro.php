@@ -27,7 +27,7 @@
 
         if ($conexion -> query($sql) == "TRUE") {
             echo "<p>Usuario registrado</p>";
-            header("location: http://localhost/06_bbdd/tienda_ropa/public/iniciar_sesion_cliente.php");
+            header("location: http://localhost/06_bbdd/tienda_ropa/public/inicio_sesion_cliente.php");
         } else {
             echo "<p>Error en el registro</p>";
         }

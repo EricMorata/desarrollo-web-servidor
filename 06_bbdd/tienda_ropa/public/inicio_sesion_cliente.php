@@ -11,7 +11,7 @@
 <body>
 
 <?php 
-require '../../util/database.php';
+require '../util/database.php';
 ?>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["usuario"]=$usuario;
             $_SESSION["rol"]=$rol;
 
-            header('location:http://localhost/06_bbdd/tienda_ropa/public/');
+            header('location: http://localhost/06_bbdd/tienda_ropa/public/');
         }else{
             echo "<h2>Contraseña equivocada</h2>";
         }

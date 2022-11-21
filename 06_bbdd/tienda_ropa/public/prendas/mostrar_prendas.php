@@ -12,11 +12,11 @@
 
 <body>
     <div class="container">
-      <?php 
- require '../../util/control_acceso.php';
- require '../../util/database.php';
- require '../header.php';
-      ?>
+        <?php
+        require '../../util/control_acceso.php';
+        require '../../util/database.php';
+        require '../header.php';
+        ?>
 
         <h1>Ver prenda</h1>
         <?php
@@ -25,10 +25,10 @@
 
             $sql = "SELECT * FROM prendas WHERE id = '$id'";
 
-            $resultado = $conexion -> query($sql);
+            $resultado = $conexion->query($sql);
 
-            if ($resultado -> num_rows > 0) {
-                while ($fila = $resultado -> fetch_assoc()) {
+            if ($resultado->num_rows > 0) {
+                while ($fila = $resultado->fetch_assoc()) {
                     $nombre = $fila["nombre"];
                     $talla = $fila["talla"];
                     $precio = $fila["precio"];
@@ -45,13 +45,13 @@
                 <p>Talla: <?php echo $talla ?></p>
                 <p>Precio: <?php echo $precio ?></p>
                 <p>Categoría: <?php echo $categoria ?></p>
-                <a class="btn btn-secondary" href="index.php">Volver</a>
                 <form action="editar_prenda.php" method="get">
                     <input type="hidden" name="id" value="<?php echo $id ?>">
                     <input type="hidden" name="nombre" value="<?php echo $nombre ?>">
                     <input type="hidden" name="talla" value="<?php echo $talla ?>">
                     <input type="hidden" name="precio" value="<?php echo $precio ?>">
                     <input type="hidden" name="categoria" value="<?php echo $categoria ?>">
+                    <a class="btn btn-secondary" href="index.php">Volver</a>
                     <button type="submit" class="btn btn-primary">Editar</button>
                 </form>
             </div>

@@ -11,15 +11,12 @@
 </head>
 
 <body>
-<?php 
- require '../../util/control_acceso.php';
- require '../../util/database.php';
- require '../header.php';
-?>
-    
-    
-
     <div class="container">
+        <?php
+        require '../../util/control_acceso.php';
+        require '../../util/database.php';
+        require '../header.php';
+        ?>
         <h1>Listado de compras</h1>
 
         <div class="row">

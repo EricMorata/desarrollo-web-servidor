@@ -22,8 +22,6 @@
 
  require '../../util/database.php';
 
-
-
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $prenda_id = $_POST["prenda_id"];
             $cantidad = $_POST["cantidad"];

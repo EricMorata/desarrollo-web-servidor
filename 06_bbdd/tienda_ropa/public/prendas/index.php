@@ -41,14 +41,14 @@
 
                             //CONSULTA PARA COGER LA RUTA DE LA IMAGEN Y LUEGO BORRARLA
 
-                            $sql = "SELECT imagen FROM prendaas WHERE id = '$id'";
+                            $sql = "SELECT imagen FROM prendas WHERE id = '$id'";
                             $resultado = $conexion->query($sql);
 
                             if ($resultado->num_rows > 0) {
                                 while ($fila = $resultado->fetch_assoc()) {
                                     $imagen = $fila["imagen"];
                                 }
-                                unlink("../.." . $imagen);
+                                unlink("../../resources/images/prendas/" . $imagen);
                             }
 
                             //CONSULTA PARA BORRAR LA PRENDA
@@ -111,7 +111,7 @@
                 </table>
             </div>
             <div class="col-3">
-                <img width="300" height="307" src="../../resources/images/ropa.jpeg">
+                <img width="400" height="570" src="../../resources/images/prendas/TiendaRopa-Benetton.jpg">
             </div>
         </div>
     </div>

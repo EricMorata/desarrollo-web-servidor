@@ -22,7 +22,7 @@
         <h1>Listado de clientes</h1>
         <div class="row">
             <div class="col-9">
-                <a class="btn btn-primary" href="./insertar_cliente.php">Nuevo Cliente</a>
+                <a class="btn btn-primary" href="../registro.php">Nuevo Cliente</a>
                 <br><br>
                 <table class="table table-striped">
                     <thead class="table-dark">
@@ -81,7 +81,7 @@
                                     <td><?php echo $apellido_2 ?></td>
                                     <td><?php echo $fecha_nacimiento ?></td>
                                     <td>
-                                        <form action="mostrar_cliente.php" method="GET">
+                                        <form action="../prendas/mostrar_prendas.php" method="GET">
                                             <button class="btn btn-primary" type="submit">Ver</button>
                                             <input type="hidden" name="id" value="<?php echo $fila["id"] ?>">
                                         </form>
