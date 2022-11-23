@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="../resources/images/style.css">
-<nav class="navbar" style="background-color: #e3f2fd;">
+<link rel="stylesheet" href="./style.css">
+<nav class="navbar" style="background-color: #E8DED1;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Cenec Modas</a>
+    <a class="navbar-brand" href="#" style="color:#4C382A;">Cenec Modas</a>
     <div class="d-flex flex-row">
       <div class="p-1">
         <a class="nav-link flex" href="http://localhost/06_bbdd/tienda_ropa/public/cerrar_sesion_cliente.php">

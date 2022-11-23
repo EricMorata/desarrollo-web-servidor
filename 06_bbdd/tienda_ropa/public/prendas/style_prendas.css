@@ -1,0 +1,37 @@
+body{
+    background-color: rgba(0, 0, 0, 0.414);
+  background-image: url("../../resources/images/1.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed; 
+   
+}
+
+h1 {
+    background-color: #e8ded1;
+    text-align: center;
+  }
+
+.column{
+    margin-left: 35%;
+  
+}
+.container{
+    background-color: rgba(160, 130, 95, 0.853);
+    border-radius: 2rem;
+    padding: 3rem;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    
+    margin-bottom: 2rem;
+}
+
+.container_mostrar{
+    width: 60%;
+    background-color: rgba(160, 130, 95, 0.853);
+    border-radius: 2rem;
+    padding: 3rem;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    margin-left: 20%;
+    margin-top: 10%;
+    margin-bottom: 2rem;
+}

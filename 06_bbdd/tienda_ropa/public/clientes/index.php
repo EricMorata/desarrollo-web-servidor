@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style_clientes.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <title>Index cliente</title>
@@ -12,14 +14,15 @@
 
 <body>
 
-    <div class="container">
+    
     <?php
         require '../../util/control_acceso.php';
         require '../../util/database.php';
         require '../header.php';
 ?>
-<br>
+
         <h1>Listado de clientes</h1>
+        <div class="container_listado">
         <div class="row">
             <div class="col-9">
                 <a class="btn btn-primary" href="../registro.php">Nuevo Cliente</a>
@@ -81,7 +84,7 @@
                                     <td><?php echo $apellido_2 ?></td>
                                     <td><?php echo $fecha_nacimiento ?></td>
                                     <td>
-                                        <form action="../prendas/mostrar_prendas.php" method="GET">
+                                        <form action="../clientes/mostrar_clientes.php" method="GET">
                                             <button class="btn btn-primary" type="submit">Ver</button>
                                             <input type="hidden" name="id" value="<?php echo $fila["id"] ?>">
                                         </form>
@@ -103,7 +106,7 @@
                 </table>
             </div>
             <div class="col-3">
-                <img width="300" height="307" src="../../resources/images/relacion_cliente.png">
+                <img width="300" height="307" src="../../resources/images/tienda-de-ropa.png">
             </div>
         </div>
     </div>

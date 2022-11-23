@@ -1,0 +1,61 @@
+body {
+  background-color: rgba(0, 0, 0, 0.414);
+  background-image: url("../resources/images/ropa-nueva-elegante-tienda-moderna-ropa-elegante-costosa-hombres_146671-48328.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
+
+#texto, #contrasenia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 50%;
+}
+
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.69);
+  border-radius: 2rem;
+  padding: 3rem;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  margin-bottom: 2rem;
+}
+
+
+
+label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.caja_index {
+  background-color: #e8ded1b1;
+  width: 80%;
+  height: 30%;
+  margin-top: 2%;
+  margin-left: 10%;
+}
+
+h1 {
+  background-color: #e8ded1;
+  text-align: center;
+}
+
+#boton1 {
+  display: inline-block;
+  margin-top: 5%;
+  margin-left: 80%;
+}
+
+#boton2 {
+  display: inline-block;
+  margin-top: 5%;
+  margin-left: 72%;
+}

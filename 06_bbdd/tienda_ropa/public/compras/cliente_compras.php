@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style_compras.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <title>cliente compras</title>
 </head>
 
 <body>
-    <div class="container">
+   
         <?php 
          require '../../util/control_acceso.php';
         
@@ -28,11 +30,11 @@
         }
         ?>
 
-        <br>
+       
         <h1>Compras de <?php echo $usuario ?></h1>
-        <br>
+        <div class="container">
         <div class="row">
-            <div class="col-9">
+            <div class="col-12">
                 <table class="table">
                     <thead class="table table-dark">
                         <tr>
@@ -63,7 +65,7 @@
                                     <td><?php echo $producto ?></td>
                                     <td><?php echo $cantidad ?></td>
                                     <td><?php echo $precio_unitario ?></td>
-                                    <td><?php echo $precio_unitario * $cantidad ?></td>
+                                    <td><?php echo $precio_unitario*$cantidad ?></td>
                                     <td><?php echo $fecha ?></td>
                                 </tr>
                         <?php

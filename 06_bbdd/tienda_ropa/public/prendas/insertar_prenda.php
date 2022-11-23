@@ -5,18 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style_prendas.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <title>Nueva prenda</title>
 </head>
 
 <body>
     <?php
+
    require '../../util/control_acceso.php';
    require '../../util/database.php';
+   require './validar.php';
    
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         $nombre = $_POST["nombre"];
-        $talla = $_POST["talla"];
+        if (isset($_POST["talla"])) {
+            $talla = $_POST["talla"];
+        } else {
+            $categoria = "";
+        }
         $precio = $_POST["precio"];
         if (isset($_POST["categoria"])) {
             $categoria = $_POST["categoria"];
@@ -60,11 +68,11 @@
     }
 ?>
 
-<div class="container">
+
     <?php require '../header.php' ?>
-    <br>
-    <h1>Nueva Prenda</h1> 
     
+    <h1>Nueva Prenda</h1> 
+    <div class="container">
     <div class="row">
         <div class="col-6">
             <form action="" method="post" enctype="multipart/form-data">
