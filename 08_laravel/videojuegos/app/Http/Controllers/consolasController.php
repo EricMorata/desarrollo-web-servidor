@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Consola;
+use DB;
 
 class consolasController extends Controller
 {
@@ -13,8 +15,27 @@ class consolasController extends Controller
      */
     public function index()
     {
+
+        $consolas = Consola::all();
+
+        return view('consolas/index', [
+            "consolas" => $consolas
+        ]);
         //aqui iria la logica del metodo
-      return view('consolas/index');
+
+        /* $mensaje = "Esta es la lista de consolas";
+        $consolas = [
+            'Playstation 5',
+            'Playstation 4',
+            'Xbox',
+            'Nintendo switch'
+        ]; */
+
+
+        /*   return view('consolas/index', [
+            'mensaje' => $mensaje,   //'mensaje' es lo que se invoca
+            'consolas' => $consolas
+        ]); */
     }
 
     /**
@@ -24,7 +45,7 @@ class consolasController extends Controller
      */
     public function create()
     {
-        //
+        return view('consolas/create');
     }
 
     /**
@@ -35,7 +56,14 @@ class consolasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $consolas = new Consola;
+        $consolas->nombre = $request->input('nombre');
+        $consolas->anio_salida = $request->input('Anio_salida');
+        $consolas->generacion = $request->input('generacion');
+        $consolas->descripcion = $request->input('descripcion');
+        $consolas->save();
+
+        return redirect('consolas');
     }
 
     /**
@@ -46,7 +74,13 @@ class consolasController extends Controller
      */
     public function show($id)
     {
-        //
+        $consola = Consola::find($id);
+        return view(
+            'consolas/show',
+            [
+                'consola' => $consola
+            ]
+        );
     }
 
     /**
@@ -80,6 +114,8 @@ class consolasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('consolas')->where('id', '=', $id)->delete();
+
+        return redirect('consolas');
     }
 }
