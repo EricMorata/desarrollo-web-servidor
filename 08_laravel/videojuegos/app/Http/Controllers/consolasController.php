@@ -91,7 +91,13 @@ class consolasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $consola = Consola::find($id);
+        return view(
+            'consolas/edit',
+            [
+                'consola' => $consola
+            ]
+        );
     }
 
     /**
@@ -103,7 +109,15 @@ class consolasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $consolas = Consola::find($id);
+
+        $consolas->nombre = $request->input('nombre');
+        $consolas->anio_salida = $request->input('Anio_salida');
+        $consolas->generacion = $request->input('generacion');
+        $consolas->descripcion = $request->input('descripcion');
+
+        $consolas->save();
+        return redirect('consolas');
     }
 
     /**

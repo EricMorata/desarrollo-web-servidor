@@ -58,7 +58,7 @@ class CompaniaController extends Controller
      */
     public function show($id)
     {
-        $compania = compania::find($id);
+        $compania = Compania::find($id);
         return view(
             'companias/show',
             [
@@ -75,7 +75,13 @@ class CompaniaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $compania = Compania::find($id);
+        return view(
+            'companias/edit',
+            [
+                'compania' => $compania
+            ]
+        );
     }
 
     /**
@@ -87,7 +93,14 @@ class CompaniaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $compania = Compania::find($id);
+
+        $compania -> nombre = $request ->input('nombre');
+        $compania -> sede = $request ->input('sede');
+        $compania -> fecha_fundacion = $request ->input('fecha_fundacion');
+
+        $compania -> save();
+        return redirect('companias');
     }
 
     /**

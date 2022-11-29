@@ -39,7 +39,7 @@
                         <textarea class = "form-control"  name="descripcion">{{ $videojuego->descripcion }}</textarea>
                     </div>
                     <div class="form-group  mt-3">
-                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-primary">Guardar</button>
                     <a href="http://localhost:8000/videojuegos/" class="btn btn-secondary">Volver</a>
                 </div>
                 </form>

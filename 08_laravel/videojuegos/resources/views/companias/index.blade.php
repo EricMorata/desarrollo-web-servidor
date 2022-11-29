@@ -26,6 +26,7 @@
                             <th>Fecha fundación</th>
                             <th></th>
                             <th></th>
+                            <th></th>
                             
                         </tr>
                     </thead>
@@ -36,8 +37,14 @@
                             <td>{{$compania->sede}}</td>
                             <td>{{$compania->fecha_fundacion}}</td>
                             <td>
-                                <form method="GET" action="{{ route('companias.show', ['compania' => $compania -> id]) }}"></form>
+                                <form method="GET" action="{{ route('companias.show', ['compania' => $compania -> id]) }}">
                                 <button class="btn btn-primary" type="submit">Ver</button>
+                            </form>
+                            </td>
+                            <td>
+                                <form method="get" action="{{ route('companias.edit', ['compania' => $compania -> id]) }}">
+                                    <button class="btn btn-success" type="submit">Editar</button>
+                                </form>
                             </td>
                             <td>
                                 <form method="POST" action="{{ route('companias.destroy', ['compania' => $compania -> id]) }}">
