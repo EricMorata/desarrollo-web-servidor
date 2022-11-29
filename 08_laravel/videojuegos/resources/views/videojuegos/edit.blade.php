@@ -13,7 +13,8 @@
         <h1>Editar videojuegos</h1>
         <div class="row">
             <div class="col-12">
-                <form>
+                <form method="POST" action="{{route('videojuegos.update',['videojuego'=> $videojuego -> id])}}">
+                    {{method_field('PUT')}}
                     @csrf 
                     <div class="form-group mb-3">
                         <label class="form-label">Título</label>

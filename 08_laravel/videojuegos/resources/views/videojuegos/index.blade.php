@@ -11,7 +11,7 @@
 
 <body>
     <div class="container">
-        <h1>videojuegos</h1>
+        <h1>Videojuegos</h1>
         <p>{{$mensaje}}</p>
         <a href="{{ route('videojuegos.create') }}" class="btn btn-success">
             Crear videojuego
