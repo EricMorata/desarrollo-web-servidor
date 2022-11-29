@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Hola mundo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
-
 <body>
     <div class="container">
-        <h1>Videojuegos</h1>
-        <p>{{$mensaje}}</p>
+        <h1>Búsqueda de Videojuegos</h1>
+
+        
+
         <a href="{{ route('videojuegos.create') }}" class="btn btn-success">
             Crear videojuego
         </a>
-        <a href="{{ route('videojuegos.search') }}" class="btn btn-success">
-            Buscar videojuego
-        </a>
+
         <br><br>
-        <form action="{{ route('videojuegos.search') }}" method="GET">
+
+        <form>
             <div class="row">
                 <div class="col-2">
                     <label class="form-label">Buscar por título</label>
@@ -33,6 +32,7 @@
                 </div>
             </div>
         </form>
+
         <div class="row">
             <div class="col-12">
                 <table class="table">
@@ -42,7 +42,6 @@
                             <th>Precio</th>
                             <th>PEGI</th>
                             <th>Descripción</th>
-                            <th></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -55,16 +54,10 @@
                                 <td>{{ $videojuego -> pegi }}</td>
                                 <td>{{ $videojuego -> descripcion }}</td>
                                 <td>
-                                  {{--   <form method="get" action="{{ route('videojuegos.show', ['videojuego' => $videojuego -> id]) }}">
+                                    <form method="get" action="{{ route('videojuegos.show', ['videojuego' => $videojuego -> id]) }}">
                                         <button class="btn btn-primary" type="submit">Ver</button>
-                                    </form> --}}
-                                </td>
-                                <td>
-                                    <form method="get" action="{{ route('videojuegos.edit', ['videojuego' => $videojuego -> id]) }}">
-                                        <button class="btn btn-success" type="submit">Editar</button>
                                     </form>
                                 </td>
-
                                 <td>
                                     <form method="post" action="{{ route('videojuegos.destroy', ['videojuego' => $videojuego -> id]) }}">
                                         @csrf 
@@ -73,7 +66,6 @@
                                     </form>
                                 </td>
                             </tr>
-                          
                         @endforeach
                     </tbody>
                 </table>
@@ -81,10 +73,6 @@
         </div>
     </div> 
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
-
 </html>
