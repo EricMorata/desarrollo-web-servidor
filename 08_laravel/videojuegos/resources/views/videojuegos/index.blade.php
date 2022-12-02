@@ -13,10 +13,10 @@
     <div class="container">
         <h1>Videojuegos</h1>
         <p>{{$mensaje}}</p>
-        <a href="{{ route('videojuegos.create') }}" class="btn btn-success">
+        <a href="{{ route('videojuegos.create') }}" class="btn btn-primary">
             Crear videojuego
         </a>
-        <a href="{{ route('videojuegos.search') }}" class="btn btn-success">
+        <a href="{{ route('videojuegos.search') }}" class="btn btn-dark">
             Buscar videojuego
         </a>
         <br><br>
@@ -33,15 +33,17 @@
                 </div>
             </div>
         </form>
+        <br><br>
         <div class="row">
             <div class="col-12">
                 <table class="table">
                     <thead>
-                        <tr>
+                        <tr class="table-dark">
                             <th>Título</th>
                             <th>Precio</th>
                             <th>PEGI</th>
                             <th>Descripción</th>
+                            <th>Compañia</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -49,16 +51,13 @@
                     </thead>
                     <tbody>
                         @foreach($videojuegos as $videojuego)
-                            <tr>
+                            <tr class="table-light">
                                 <td>{{ $videojuego -> titulo }}</td>
                                 <td>{{ $videojuego -> precio }}</td>
                                 <td>{{ $videojuego -> pegi }}</td>
                                 <td>{{ $videojuego -> descripcion }}</td>
-                                <td>
-                                  {{--   <form method="get" action="{{ route('videojuegos.show', ['videojuego' => $videojuego -> id]) }}">
-                                        <button class="btn btn-primary" type="submit">Ver</button>
-                                    </form> --}}
-                                </td>
+                                <td> {{$videojuego -> compania -> nombre}} </td>
+                             
                                 <td>
                                     <form method="get" action="{{ route('videojuegos.edit', ['videojuego' => $videojuego -> id]) }}">
                                         <button class="btn btn-success" type="submit">Editar</button>

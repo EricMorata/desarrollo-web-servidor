@@ -30,6 +30,10 @@ return view('consolas/info');
 
 Route::resource('/consolas', ConsolasController::class);
 
+Route::get('/videojuegos/search',
+[VideojuegosController::class,'search'])
+->name('videojuegos.search');
+
  Route::resource('/videojuegos', VideojuegosController::class);
 
  Route::resource('/companias', CompaniaController::class);
@@ -49,4 +53,3 @@ Route::resource('/consolas', ConsolasController::class);
 /* Route::get('/videojuegos', function () {
     return view('videojuegos');
 }); */
-?>

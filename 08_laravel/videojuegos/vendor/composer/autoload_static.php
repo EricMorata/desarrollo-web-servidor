@@ -510,7 +510,6 @@ class ComposerStaticInit7ed5c9112151325d9c30df2a086859a1
         'App\\Http\\Controllers\\CompaniaController' => __DIR__ . '/../..' . '/app/Http/Controllers/CompaniaController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\VideojuegosController' => __DIR__ . '/../..' . '/app/Http/Controllers/VideojuegosController.php',
-        'App\\Http\\Controllers\\consolasController' => __DIR__ . '/../..' . '/app/Http/Controllers/consolasController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
