@@ -12,4 +12,9 @@ class Videojuego extends Model
     public function compania(){
         return $this -> belongsTo(Compania::class);
     }
+//pivot table
+    public function consolas(){
+        return $this->belongsToMany(Consola::class, 'consolas_videojuegos',
+        'videojuego_id','consola_id');
+    }
 }

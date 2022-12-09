@@ -44,9 +44,10 @@
                             <th>PEGI</th>
                             <th>Descripción</th>
                             <th>Compañia</th>
+                            <th>Consola</th>
                             <th></th>
                             <th></th>
-                            <th></th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -57,6 +58,12 @@
                                 <td>{{ $videojuego -> pegi }}</td>
                                 <td>{{ $videojuego -> descripcion }}</td>
                                 <td> {{$videojuego -> compania -> nombre}} </td>
+                                <td>
+                                    @foreach($videojuego -> consolas as $consola)
+                                    {{$consola -> nombre}},
+                                    @endforeach
+                                   
+                                </td>
                              
                                 <td>
                                     <form method="get" action="{{ route('videojuegos.edit', ['videojuego' => $videojuego -> id]) }}">
